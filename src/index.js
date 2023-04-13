@@ -1,1 +1,15 @@
-console.log('Hello World')
+import { aboutSceneComponent } from './client/components/scenes/about.js'
+import { levelSceneComponent } from './client/components/scenes/level.js'
+import { newGameSceneComponent } from './client/components/scenes/new-game.js'
+import { settingsSceneComponent } from './client/components/scenes/settings.js'
+import { titleSceneComponent } from './client/components/scenes/title.js'
+import { add } from './client/registry.js'
+import { render } from './client/render.js'
+
+add('about-scene', aboutSceneComponent)
+add('level-scene', levelSceneComponent)
+add('new-game-scene', newGameSceneComponent)
+add('settings-scene', settingsSceneComponent)
+add('title-scene', titleSceneComponent)
+
+render()
