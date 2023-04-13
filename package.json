@@ -2,9 +2,20 @@
   "name": "gamedevjs-2023",
   "version": "0.1.0",
   "description": "Theme is TIME.",
-  "main": "index.js",
+  "main": "src/index.js",
+  "type": "module",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "build": "esbuild app=src/index.js --bundle --minify --sourcemap=inline --outdir=dist",
+    "build:dev": "esbuild app=src/index.js --bundle --outdir=dist",
+    "clean": "rimraf ./dist && mkdir ./dist && touch ./dist/.gitkeep",
+    "prebuild": "yarn clean && yarn test:ci",
+    "prebuild:dev": "yarn clean",
+    "pre-commit": "yarn types",
+    "test": "mocha",
+    "test:ci": "c8 mocha",
+    "tsc": "tsc",
+    "tsd": "tsd",
+    "types": "tsc --noEmit false --emitDeclarationOnly true"
   },
   "repository": {
     "type": "git",
@@ -16,5 +27,17 @@
     "jam"
   ],
   "author": "André Jaenisch",
-  "license": "AGPL-3.0-or-later"
+  "license": "AGPL-3.0-or-later",
+  "devDependencies": {
+    "c8": "7.13.0",
+    "chai": "4.3.7",
+    "esbuild": "0.17.16",
+    "mocha": "10.2.0",
+    "rimraf": "5.0.0",
+    "tsd": "0.28.1",
+    "typescript": "5.0.4"
+  },
+  "dependencies": {
+    "socket.io": "4.6.1"
+  }
 }
