@@ -8,7 +8,7 @@
     "build": "esbuild app=src/index.js --bundle --minify --sourcemap=inline --outdir=dist",
     "build:dev": "esbuild app=src/index.js --bundle --outdir=dist",
     "clean": "rimraf ./dist && mkdir ./dist && touch ./dist/.gitkeep",
-    "lint": "yarn lint:src && yarn lint:test",
+    "lint": "npm run lint:src && npm run lint:test",
     "lint:src": "standard src",
     "lint:test": "standard test --global beforeEach --global describe --global expect",
     "postinstall": "husky install",
