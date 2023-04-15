@@ -46,7 +46,7 @@ describe('getTransitionsForSceneFromState', () => {
         expect(transitions).to.have.length(3)
         expect(transitions).to.contain('about')
         expect(transitions).to.contain('settings')
-        expect(transitions).to.contain('newGame')
+        expect(transitions).to.contain('new-game')
       })
     })
   })

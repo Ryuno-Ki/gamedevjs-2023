@@ -26,5 +26,6 @@ export function getTransitionsForSceneFromState (state, scene) {
   const transitions = Object
     .values(transitionEvents)
     .map((event) => event.target)
+
   return transitions
 }

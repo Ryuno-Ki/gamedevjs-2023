@@ -57,7 +57,7 @@ export const initialState = {
       },
       level: {
       },
-      newGame: {
+      'new-game': {
         on: {
           navigateToLevel: {
             target: 'level'
@@ -80,7 +80,7 @@ export const initialState = {
             target: 'about'
           },
           navigateToNewGame: {
-            target: 'newGame'
+            target: 'new-game'
           },
           navigateToSettings: {
             target: 'settings'
