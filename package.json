@@ -38,10 +38,11 @@
   "author": "André Jaenisch",
   "license": "AGPL-3.0-or-later",
   "devDependencies": {
-    "@commitlint/cli": "17.6.0",
-    "@commitlint/config-conventional": "17.6.0",
+    "@commitlint/cli": "17.6.1",
+    "@commitlint/config-conventional": "17.6.1",
     "c8": "7.13.0",
     "chai": "4.3.7",
+    "chai-dom": "1.11.0",
     "esbuild": "0.17.16",
     "husky": "8.0.3",
     "jsdom": "21.1.1",
