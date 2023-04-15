@@ -1,26 +1,7 @@
+import { getTransitionsForSceneFromState } from '../../state/utils.js'
+
 /** @typedef {import('../scenes/index').Scene} Scene */
 /** @typedef {import('../../state/initial').State} State */
-
-/**
- * Extracts the transitions from title scene from state.
- *
- * @private
- * @param {State} state
- * @returns {Array<Scene>}
- */
-function getTransitionsFromState (state) {
-  const { scenes: { states: { title: titleState } } } = state
-  const transitionEvents = titleState ? titleState.on : []
-  if (!transitionEvents) {
-    console.info('Expected transitions from title scene but found not')
-    return []
-  }
-
-  const transitions = Object
-    .values(transitionEvents)
-    .map((event) => event.target)
-  return transitions
-}
 
 /**
  * Turns transitions into anchor elements.
@@ -50,7 +31,7 @@ function buildTitleScene (state) {
   const headline = document.createElement('h1')
   headline.textContent = 'Title Scene'
 
-  const transitions = getTransitionsFromState(state)
+  const transitions = getTransitionsForSceneFromState(state, 'title')
   const anchors = mapTransitionsToLinks(transitions)
   container.appendChild(headline)
   anchors.forEach((anchor) => container.appendChild(anchor))
