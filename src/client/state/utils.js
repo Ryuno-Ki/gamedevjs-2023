@@ -4,7 +4,6 @@
 /**
  * Extracts the transitions from given scene from state.
  *
- * @private
  * @param {State} state
  * @param {Scene} scene
  * @returns {Array<Scene>}

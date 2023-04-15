@@ -3,7 +3,6 @@
 /**
  * Turns transitions into anchor elements.
  *
- * @private
  * @param {Array<Scene>} transitions
  * @returns {Array<HTMLAnchorElement>}
  */
