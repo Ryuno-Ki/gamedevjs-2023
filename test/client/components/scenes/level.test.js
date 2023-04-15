@@ -1,10 +1,22 @@
-import { expect } from 'chai'
+import chai from 'chai'
+import chaiDom from 'chai-dom'
 
 import { document } from '../../../prepare.js'
 import { initialState } from '../../../../src/client/state/initial.js'
 import { levelSceneComponent } from '../../../../src/client/components/scenes/level.js'
 
+chai.use(chaiDom)
+const { expect } = chai
+
 describe('levelSceneComponent', () => {
+  beforeEach(() => {
+    global.document = document
+  })
+
+  afterEach(() => {
+    delete global.document
+  })
+
   describe('when level scene is active', () => {
     it('should render the level scene', () => {
       // Arrange
@@ -17,6 +29,19 @@ describe('levelSceneComponent', () => {
       // Standard is tripped up by Chai here
       // eslint-disable-next-line no-unused-expressions
       expect(component.innerHTML).not.to.be.empty
+    })
+
+    it('should render links to transition to other scenes', () => {
+      // Arrange
+      const state = Object.assign({}, initialState, { activeScene: 'level' })
+
+      // Act
+      const component = levelSceneComponent(document.body, state)
+
+      // Assert
+      // At this point in time there are no transitions from the level
+      // There will be win and game over scenes later
+      expect(component).not.to.contain('a')
     })
   })
 
