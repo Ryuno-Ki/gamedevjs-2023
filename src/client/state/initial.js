@@ -1,9 +1,9 @@
-/** @typedef {'about' | 'level' | 'new-game' | 'settings' | 'title'} ActiveScene */
+/** @typedef {import('../components/scenes/index').Scene} Scene}
 /** @typedef {'UNINITIALISED' | 'RUNNING'} GameStatus */
 
 /**
  * @typedef {object} State
- * @property {ActiveScene} State.activeScene
+ * @property {Scene} State.activeScene
  * @property {Array<number>} State.clock
  * @property {GameStatus} State.gameStatus
  */

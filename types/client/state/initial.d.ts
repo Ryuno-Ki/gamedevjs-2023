@@ -3,10 +3,14 @@ export namespace initialState {
     const clock: never[];
     const gameStatus: string;
 }
-export type ActiveScene = 'about' | 'level' | 'new-game' | 'settings' | 'title';
+/**
+ * }
+ * /**
+ */
+export type Scene = import('../components/scenes/index').Scene;
 export type GameStatus = 'UNINITIALISED' | 'RUNNING';
 export type State = {
-    activeScene: ActiveScene;
+    activeScene: Scene;
     clock: Array<number>;
     gameStatus: GameStatus;
 };
