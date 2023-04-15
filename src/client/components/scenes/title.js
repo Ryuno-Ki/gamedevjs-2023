@@ -1,23 +1,8 @@
 import { getTransitionsForSceneFromState } from '../../state/utils.js'
+import { mapTransitionsToLinks } from './utils.js'
 
 /** @typedef {import('../scenes/index').Scene} Scene */
 /** @typedef {import('../../state/initial').State} State */
-
-/**
- * Turns transitions into anchor elements.
- *
- * @private
- * @param {Array<Scene>} transitions
- * @returns {Array<HTMLAnchorElement>}
- */
-function mapTransitionsToLinks (transitions) {
-  return transitions.map((transition) => {
-    const anchor = document.createElement('a')
-    anchor.href = `#${transition}`
-    anchor.textContent = transition
-    return anchor
-  })
-}
 
 /**
  * Build the DOM to attach to the target element.
