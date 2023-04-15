@@ -1,5 +1,5 @@
 /** @typedef {import('../components/scenes/index').Scene} Scene}
-/** @typedef {'UNINITIALISED' | 'RUNNING'} GameStatus */
+/** @typedef {'UNINITIALISED' | 'INITIALISED' | 'RUNNING'} GameStatus */
 
 /**
  * @typedef {Object.<'target', Scene>} Transition

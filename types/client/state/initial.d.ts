@@ -65,7 +65,7 @@ export namespace initialState {
  * /**
  */
 export type Scene = import('../components/scenes/index').Scene;
-export type GameStatus = 'UNINITIALISED' | 'RUNNING';
+export type GameStatus = 'UNINITIALISED' | 'INITIALISED' | 'RUNNING';
 export type Transition = any;
 export type TransitionEvent = {
     [x: string]: Transition;
