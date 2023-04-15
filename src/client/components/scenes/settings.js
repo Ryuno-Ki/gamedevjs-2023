@@ -1,4 +1,27 @@
+import { getTransitionsForSceneFromState } from '../../state/utils.js'
+import { mapTransitionsToLinks } from './utils.js'
+
+/** @typedef {import('../scenes/index').Scene} Scene */
 /** @typedef {import('../../state/initial').State} State */
+
+/**
+ * Build the DOM to attach to the target element.
+ *
+ * @private
+ * @param {State} state
+ * @returns {HTMLDivElement}
+ */
+function buildScene (state) {
+  const container = document.createElement('div')
+  const headline = document.createElement('h1')
+  headline.textContent = 'Settings Scene'
+
+  const transitions = getTransitionsForSceneFromState(state, 'settings')
+  const anchors = mapTransitionsToLinks(transitions)
+  container.appendChild(headline)
+  anchors.forEach((anchor) => container.appendChild(anchor))
+  return container
+}
 
 /**
  * Renders the scene for settings.
@@ -13,7 +36,9 @@ export function settingsSceneComponent (targetElement, state) {
   if (state.activeScene !== 'settings') {
     element.innerHTML = ''
   } else {
-    element.innerHTML = 'Settings Scene'
+    const child = buildScene(state)
+    // TODO: Think about how to use .replaceWith but keep it idempotent
+    element.innerHTML = child.outerHTML
   }
 
   return element
