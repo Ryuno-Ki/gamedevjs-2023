@@ -11,7 +11,7 @@ import { mapTransitionsToLinks } from './utils.js'
  * @param {State} state
  * @returns {HTMLDivElement}
  */
-function buildTitleScene (state) {
+function buildScene (state) {
   const container = document.createElement('div')
   const headline = document.createElement('h1')
   headline.textContent = 'Level Scene'
@@ -36,7 +36,7 @@ export function levelSceneComponent (targetElement, state) {
   if (state.activeScene !== 'level') {
     element.innerHTML = ''
   } else {
-    const child = buildTitleScene(state)
+    const child = buildScene(state)
     // TODO: Think about how to use .replaceWith but keep it idempotent
     element.innerHTML = child.outerHTML
   }
