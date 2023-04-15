@@ -1,5 +1,6 @@
 import { initialState } from '../initial.js'
-import { TICK } from '../../../constants.js'
+import { SWITCH_TO_SCENE, TICK } from '../../../constants.js'
+import { switchToScene } from './switch-to-scene.js'
 import { tick } from './tick.js'
 
 /** @typedef {import('../actions/index').Action} Action */
@@ -18,9 +19,18 @@ export function reducer (state, action) {
   }
 
   switch (action.type) {
+    case SWITCH_TO_SCENE:
+      return switchToScene(
+        state,
+        /** @type {import('../actions/switch-to-scene').Action} */(action).payload
+      )
     case TICK:
-      return tick(state, action.payload)
+      return tick(
+        state,
+        /** @type {import('../actions/tick').Action} */(action).payload
+      )
     default:
+      console.debug('Unknown action type', action.type)
       return state
   }
 }

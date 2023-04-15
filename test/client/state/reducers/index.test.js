@@ -1,6 +1,6 @@
 import { expect } from 'chai'
 
-import { TICK } from '../../../../src/constants.js'
+import { SWITCH_TO_SCENE, TICK } from '../../../../src/constants.js'
 import { initialState } from '../../../../src/client/state/initial.js'
 import { reducer } from '../../../../src/client/state/reducers/index.js'
 
@@ -30,6 +30,20 @@ describe('reducer', () => {
 
       // Assert
       expect(newState).to.equal(state)
+    })
+  })
+
+  describe('when invoked with SWITCH_TO_SCENE action', () => {
+    it('should update the state', () => {
+      // Arrange
+      const state = Object.assign({}, initialState)
+      const action = { type: SWITCH_TO_SCENE, payload: { scene: 'about' } }
+
+      // Act
+      const newState = reducer(state, action)
+
+      // Assert
+      expect(newState).to.not.equal(state)
     })
   })
 
