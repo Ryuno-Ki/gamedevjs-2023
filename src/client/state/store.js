@@ -1,6 +1,9 @@
+import { SWITCH_TO_SCENE } from '../../constants.js'
 import { reducer } from './reducers/index.js'
 
+/** @typedef {import('./../components/scenes/index').Scene} Scene */
 /** @typedef {import('./actions/index').Action} Action */
+/** @typedef {import('./actions/switch-to-scene').Action} SwitchToSceneAction */
 /** @typedef {import('./initial').State} State */
 
 /**
@@ -36,6 +39,9 @@ export class Store {
    */
   _applySideEffects (action) {
     switch (action.type) {
+      case SWITCH_TO_SCENE:
+        updateDocumentTitle(/** @type {SwitchToSceneAction} */(action).payload)
+        break
       default:
         // No side effects to apply
     }
@@ -43,6 +49,17 @@ export class Store {
 }
 
 const store = new Store(reducer)
+
+/**
+ *
+ * @private
+ * @param {SwitchToSceneAction['payload']} payload
+ */
+function updateDocumentTitle (payload) {
+  const { scene } = payload
+  const title = [scene, 'TIME', 'GameDevJS 2023'].join(' | ')
+  document.title = title
+}
 
 // Export as Singleton
 export default store
