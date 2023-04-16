@@ -21,7 +21,7 @@
     "prepare": "husky install",
     "serve:dev": "esbuild src/index.js --bundle --servedir=dist --outdir=dist",
     "test": "mocha",
-    "test:ci": "c8 mocha",
+    "test:ci": "c8 mocha -R tap",
     "tsc": "tsc",
     "tsd": "tsd",
     "types": "tsc --noEmit false --emitDeclarationOnly true"

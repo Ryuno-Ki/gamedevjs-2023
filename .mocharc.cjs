@@ -9,4 +9,5 @@ module.exports = {
   ],
   parallel: true,
   recursive: true,
+  reporter: 'nyan'
 }
