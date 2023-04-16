@@ -1,4 +1,5 @@
 import { getTransitionsForSceneFromState } from '../../state/utils.js'
+import { el } from '../el.js'
 import { mapTransitionsToLinks } from './utils.js'
 
 /** @typedef {import('../scenes/index').Scene} Scene */
@@ -12,13 +13,9 @@ import { mapTransitionsToLinks } from './utils.js'
  * @returns {HTMLDivElement}
  */
 function buildTitleScene (state) {
-  const container = document.createElement('div')
-  const headline = document.createElement('h1')
-  headline.textContent = 'Title Scene'
-
+  const container = /** @type {HTMLDivElement} */(el('div', [], {}, '', [['h1', [], {}, 'Title Scene']]))
   const transitions = getTransitionsForSceneFromState(state, 'title')
   const anchors = mapTransitionsToLinks(transitions)
-  container.appendChild(headline)
   anchors.forEach((anchor) => container.appendChild(anchor))
   return container
 }
