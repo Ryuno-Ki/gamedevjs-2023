@@ -1,6 +1,8 @@
+export { setNickname } from './set-nickname.js'
 export { switchToScene } from './switch-to-scene.js'
 export { tick } from './tick.js'
 
+/** @typedef {import('./set-nickname.js').Action} SetNicknameAction */
 /** @typedef {import('./switch-to-scene').Action} SwitchToSceneAction */
 /** @typedef {import('./tick').Action} TickAction */
-/** @typedef {SwitchToSceneAction | TickAction} Action */
+/** @typedef {SetNicknameAction | SwitchToSceneAction | TickAction} Action */
