@@ -22,13 +22,14 @@ function mapPlayerToFieldset (player, index) {
     ['legend', [], {}, `Player ${index + 1}`],
     ['div', [], {}, '', [
       ['label', [], { for: idName }, 'Nickname'],
-      ['input', [], { id: idName, type: 'text' }]
+      ['input', [], { id: idName, 'data-index': index, type: 'text' }]
     ]],
     ['div', [], {}, '', [
       ['p', [], {}, 'Is Bot?'],
       ['label', [], { for: `${idBot}-yes` }, 'Yes'],
       ['input', [], {
         checked: player.isBot ? 'checked' : '',
+        'data-index': index,
         id: `${idBot}-yes`,
         name: idBot,
         type: 'radio',
@@ -37,6 +38,7 @@ function mapPlayerToFieldset (player, index) {
       ['label', [], { for: `${idBot}-no` }, 'No'],
       ['input', [], {
         checked: !player.isBot ? 'checked' : '',
+        'data-index': index,
         id: `${idBot}-no`,
         name: idBot,
         type: 'radio',
