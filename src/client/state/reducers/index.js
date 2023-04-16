@@ -1,5 +1,6 @@
 import { initialState } from '../initial.js'
-import { SWITCH_TO_SCENE, TICK } from '../../../constants.js'
+import { SET_NICKNAME, SWITCH_TO_SCENE, TICK } from '../../../constants.js'
+import { setNickname } from './set-nickname.js'
 import { switchToScene } from './switch-to-scene.js'
 import { tick } from './tick.js'
 
@@ -19,6 +20,11 @@ export function reducer (state, action) {
   }
 
   switch (action.type) {
+    case SET_NICKNAME:
+      return setNickname(
+        state,
+        /** @type {import('../actions/set-nickname').Action} */(action).payload
+      )
     case SWITCH_TO_SCENE:
       return switchToScene(
         state,

@@ -1,6 +1,10 @@
 import { expect } from 'chai'
 
-import { SWITCH_TO_SCENE, TICK } from '../../../../src/constants.js'
+import {
+  SET_NICKNAME,
+  SWITCH_TO_SCENE,
+  TICK
+} from '../../../../src/constants.js'
 import { initialState } from '../../../../src/client/state/initial.js'
 import { reducer } from '../../../../src/client/state/reducers/index.js'
 
@@ -30,6 +34,20 @@ describe('reducer', () => {
 
       // Assert
       expect(newState).to.equal(state)
+    })
+  })
+
+  describe('when invoked with SET_NICKNAME action', () => {
+    it('should update the state', () => {
+      // Arrange
+      const state = Object.assign({}, initialState)
+      const action = { type: SET_NICKNAME, payload: { index: 2, nickname: 'Mega' } }
+
+      // Act
+      const newState = reducer(state, action)
+
+      // Assert
+      expect(newState).to.not.equal(state)
     })
   })
 
