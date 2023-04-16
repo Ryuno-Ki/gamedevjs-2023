@@ -3,7 +3,7 @@ import { expect } from 'chai'
 import { initialState } from '../../../../src/client/state/initial.js'
 import { switchToScene } from '../../../../src/client/state/reducers/switch-to-scene.js'
 
-describe('switchToScene', (t) => {
+describe('switchToScene', () => {
   describe('when new scene is valid', () => {
     it('should update the game status to INITIALISED', () => {
       // Arrange
