@@ -1,3 +1,5 @@
+import { el } from '../el.js'
+
 /** @typedef {import('../scenes/index').Scene} Scene */
 
 /**
@@ -8,9 +10,6 @@
  */
 export function mapTransitionsToLinks (transitions) {
   return transitions.map((transition) => {
-    const anchor = document.createElement('a')
-    anchor.href = `#${transition}`
-    anchor.textContent = transition
-    return anchor
+    return /** @type{HTMLAnchorElement} */(el('a', [], { href: `#${transition}` }, transition))
   })
 }
