@@ -31,6 +31,7 @@ export const scenes = {
   id: 'XState definition for scenes',
   predictableActionArguments: true,
   preserveActionOrder: true,
+  // TODO: Think about loading a game here: initial state matches activeScene
   initial: 'title',
   states: {
     about: {
