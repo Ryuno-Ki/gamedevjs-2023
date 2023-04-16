@@ -3,7 +3,59 @@ import { el } from '../el.js'
 import { mapTransitionsToLinks } from './utils.js'
 
 /** @typedef {import('../scenes/index').Scene} Scene */
+/** @typedef {import('../../state/initial').Player} Player */
 /** @typedef {import('../../state/initial').State} State */
+
+/**
+ * Builds the DOM for a single player.
+ *
+ * @private
+ * @param {Player} player
+ * @param {number} index
+ * @returns {HTMLFieldSetElement}
+ */
+function mapPlayerToFieldset (player, index) {
+  const idBot = `player-${index + 1}-bot`
+  const idName = `player-${index + 1}-name`
+
+  return /** @type {HTMLFieldSetElement} */(el('fieldset', [], {}, '', [
+    ['legend', [], {}, `Player ${index + 1}`],
+    ['div', [], {}, '', [
+      ['label', [], { for: idName }, 'Nickname'],
+      ['input', [], { id: idName, type: 'text' }]
+    ]],
+    ['div', [], {}, '', [
+      ['p', [], {}, 'Is Bot?'],
+      ['label', [], { for: `${idBot}-yes` }, 'Yes'],
+      ['input', [], {
+        checked: player.isBot ? 'checked' : '',
+        id: `${idBot}-yes`,
+        name: idBot,
+        type: 'radio',
+        value: true
+      }],
+      ['label', [], { for: `${idBot}-no` }, 'No'],
+      ['input', [], {
+        checked: !player.isBot ? 'checked' : '',
+        id: `${idBot}-no`,
+        name: idBot,
+        type: 'radio',
+        value: false
+      }]
+    ]]
+  ]))
+}
+
+/**
+ * Builds the DOM for all players.
+ *
+ * @private
+ * @param {Array<Player>} players
+ * @returns {Array<HTMLFieldSetElement>}
+ */
+function mapPlayersToFieldsets (players) {
+  return players.map((player, index) => mapPlayerToFieldset(player, index))
+}
 
 /**
  * Build the DOM to attach to the target element.
@@ -13,10 +65,16 @@ import { mapTransitionsToLinks } from './utils.js'
  * @returns {HTMLDivElement}
  */
 function buildScene (state) {
-  const container = /** @type {HTMLDivElement} */(el('div', [], {}, '', [['h1', [], {}, 'New Game Scene']]))
+  const headline = ['h1', [], {}, 'New Game Scene']
+  const container = /** @type {HTMLDivElement} */(el('div', [], {}, '', [headline]))
+
+  const fieldsets = mapPlayersToFieldsets(state.players)
+  fieldsets.forEach((fieldset) => container.appendChild(fieldset))
+
   const transitions = getTransitionsForSceneFromState(state, 'new-game')
   const anchors = mapTransitionsToLinks(transitions)
   anchors.forEach((anchor) => container.appendChild(anchor))
+
   return container
 }
 

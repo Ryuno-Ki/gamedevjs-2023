@@ -7,4 +7,5 @@
  */
 export function newGameSceneComponent(targetElement: HTMLElement, state: State): HTMLElement;
 export type Scene = import('../scenes/index').Scene;
+export type Player = import('../../state/initial').Player;
 export type State = import('../../state/initial').State;

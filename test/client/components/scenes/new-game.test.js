@@ -31,6 +31,21 @@ describe('newGameSceneComponent', () => {
       expect(component.innerHTML).not.to.be.empty
     })
 
+    it('should render a fieldset for each player', () => {
+      // Arrange
+      const state = Object.assign({}, initialState, { activeScene: 'new-game' })
+
+      // Act
+      const component = newGameSceneComponent(document.body, state)
+
+      // Assert
+      expect(component).to.have.descendants('fieldset').and.have.length(state.players.length)
+      expect(component).to.have.descendants('legend').and.have.length(state.players.length)
+      expect(component).to.have.descendants('label').and.have.length(state.players.length * 3)
+      expect(component).to.have.descendants('input[type="text"]').and.have.length(state.players.length)
+      expect(component).to.have.descendants('input[type="radio"]').and.have.length(state.players.length * 2)
+    })
+
     it('should render links to transition to other scenes', () => {
       // Arrange
       const state = Object.assign({}, initialState, { activeScene: 'new-game' })
