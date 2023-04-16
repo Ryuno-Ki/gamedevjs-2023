@@ -4,3 +4,4 @@ import { JSDOM } from 'jsdom'
 const jsdom = new JSDOM(undefined, { url: 'http://localhost' })
 
 export const document = jsdom.window.document
+export const HTMLAnchorElement = jsdom.window.HTMLAnchorElement
