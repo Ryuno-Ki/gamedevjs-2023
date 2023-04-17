@@ -57,6 +57,7 @@
   },
   "dependencies": {
     "nanoid": "4.0.2",
+    "openmoji": "14.0.0",
     "socket.io": "4.6.1"
   }
 }

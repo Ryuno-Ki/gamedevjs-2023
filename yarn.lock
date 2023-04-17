@@ -2730,7 +2730,7 @@ nanoid@3.3.3:
   resolved "https://registry.yarnpkg.com/nanoid/-/nanoid-3.3.3.tgz#fd8e8b7aa761fe807dba2d1b98fb7241bb724a25"
   integrity sha512-p1sjXuopFs0xg+fPASzQ28agW1oHD7xDsd9Xkf3T15H3c/cifrFHVwrh74PdoklAPi+i7MdRsE47vm2r6JoB+w==
 
-nanoid@^4.0.2:
+nanoid@4.0.2:
   version "4.0.2"
   resolved "https://registry.yarnpkg.com/nanoid/-/nanoid-4.0.2.tgz#140b3c5003959adbebf521c170f282c5e7f9fb9e"
   integrity sha512-7ZtY5KTCNheRGfEFxnedV5zFiORN1+Y1N6zvPTnHQd8ENUvfaDBeuJDZb2bN/oXwXxu3qkTXDzy57W5vAmDTBw==
@@ -2866,6 +2866,11 @@ onetime@^5.1.2:
   integrity sha512-kbpaSSGJTWdAY5KPVeMOKXSrPtr8C8C7wodJbcsd51jRnmD+GZu8Y0VoU6Dm5Z4vWr0Ig/1NKuWRKf7j5aaYSg==
   dependencies:
     mimic-fn "^2.1.0"
+
+openmoji@14.0.0:
+  version "14.0.0"
+  resolved "https://registry.yarnpkg.com/openmoji/-/openmoji-14.0.0.tgz#83d52501c3bb96a00d4bbd096825d9b533b4dc51"
+  integrity sha512-MGF9GbXfpULuRtUM1srEv2OP3sg/e8hAw0UCTiP+N3+CX38RCo8/kjyFYm0eO+OENnbbri9Vx4m5pU0Vbc7LGw==
 
 optionator@^0.8.1:
   version "0.8.3"
