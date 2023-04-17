@@ -31,6 +31,32 @@ describe('levelSceneComponent', () => {
       expect(component.innerHTML).not.to.be.empty
     })
 
+    it('should render the nicknames and an avatar for the players', () => {
+      // Arrange
+      const state = Object.assign(
+        {},
+        initialState,
+        {
+          activeScene: 'level',
+          players: [
+            ...initialState.players,
+            { name: 'Mega', isBot: true }
+          ]
+        }
+      )
+
+      // Act
+      const component = levelSceneComponent(document.body, state)
+
+      // Assert
+      // Standard is tripped up by Chai here
+      // eslint-disable-next-line no-unused-expressions
+      state.players.forEach((player, index) => {
+        expect(component).to.have.descendant(`[data-index="${index}"] .avatar`)
+        expect(component).to.have.descendant(`[data-index="${index}"] .nickname`).and.have.text(player.name)
+      })
+    })
+
     it('should render links to transition to other scenes', () => {
       // Arrange
       const state = Object.assign({}, initialState, { activeScene: 'level' })

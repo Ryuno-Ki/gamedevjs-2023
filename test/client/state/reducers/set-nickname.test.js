@@ -16,9 +16,9 @@ describe('setNickname', () => {
     expect(newState).not.to.equal(state)
     newState.players.forEach((player, idx) => {
       if (idx === payload.index) {
-        expect(player.nickname).to.equal(payload.nickname)
+        expect(player.name).to.equal(payload.nickname)
       } else {
-        expect(player.nickname).to.equal(state.players[idx].nickname)
+        expect(player.name).to.equal(state.players[idx].name)
       }
     })
   })

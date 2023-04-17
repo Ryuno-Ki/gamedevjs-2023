@@ -31,7 +31,7 @@ export function setNickname (state, payload) {
     if (index === payload.index) {
       return {
         ...player,
-        nickname: sanitiseNickname(payload.nickname)
+        name: sanitiseNickname(payload.nickname)
       }
     } else {
       return player

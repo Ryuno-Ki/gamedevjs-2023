@@ -153,3 +153,5 @@ dist
 
 ## My own rules
 .husky
+src/vendor
+types/vendor
