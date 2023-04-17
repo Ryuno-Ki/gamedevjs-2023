@@ -1,6 +1,7 @@
 import { expect } from 'chai'
 
 import {
+  SET_IS_BOT,
   SET_NICKNAME,
   SWITCH_TO_SCENE,
   TICK
@@ -34,6 +35,20 @@ describe('reducer', () => {
 
       // Assert
       expect(newState).to.equal(state)
+    })
+  })
+
+  describe('when invoked with SET_IS_BOT action', () => {
+    it('should update the state', () => {
+      // Arrange
+      const state = Object.assign({}, initialState)
+      const action = { type: SET_IS_BOT, payload: { index: 2, isBot: true } }
+
+      // Act
+      const newState = reducer(state, action)
+
+      // Assert
+      expect(newState).to.not.equal(state)
     })
   })
 

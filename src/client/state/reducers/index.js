@@ -1,5 +1,11 @@
 import { initialState } from '../initial.js'
-import { SET_NICKNAME, SWITCH_TO_SCENE, TICK } from '../../../constants.js'
+import {
+  SET_IS_BOT,
+  SET_NICKNAME,
+  SWITCH_TO_SCENE,
+  TICK
+} from '../../../constants.js'
+import { setIsBot } from './set-is-bot.js'
 import { setNickname } from './set-nickname.js'
 import { switchToScene } from './switch-to-scene.js'
 import { tick } from './tick.js'
@@ -20,6 +26,11 @@ export function reducer (state, action) {
   }
 
   switch (action.type) {
+    case SET_IS_BOT:
+      return setIsBot(
+        state,
+        /** @type {import('../actions/set-is-bot').Action} */(action).payload
+      )
     case SET_NICKNAME:
       return setNickname(
         state,
