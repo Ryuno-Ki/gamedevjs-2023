@@ -1,3 +1,4 @@
+import { setIsBot } from './state/actions/set-is-bot.js'
 import { setNickname } from './state/actions/set-nickname.js'
 import { switchToScene } from './state/actions/switch-to-scene.js'
 import store from './state/store.js'
@@ -66,12 +67,27 @@ async function handleFormInput (inputElement) {
   const { type } = inputElement
 
   switch (type) {
+    case 'radio':
+      await handleIsBot(inputElement)
+      break
     case 'text':
       await handleNickname(inputElement)
       break
     default:
       // Do nothing
   }
+}
+
+/**
+ * Handles isBot input.
+ *
+ * @private
+ * @param {HTMLInputElement} radioInputElement
+ */
+async function handleIsBot (radioInputElement) {
+  const index = parseInt(radioInputElement.dataset.index || '-1', 10) || -1
+  const isBot = radioInputElement.value === 'true'
+  await store.dispatch(setIsBot(index, isBot))
 }
 
 /**

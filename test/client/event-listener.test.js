@@ -8,6 +8,7 @@ import {
   onInput,
   registerEventListeners
 } from '../../src/client/event-listener.js'
+import { setIsBot } from '../../src/client/state/actions/set-is-bot.js'
 import { setNickname } from '../../src/client/state/actions/set-nickname.js'
 import { switchToScene } from '../../src/client/state/actions/switch-to-scene.js'
 import store from '../../src/client/state/store.js'
@@ -49,29 +50,57 @@ describe('registerEventListeners', () => {
     expect(dispatchSpy).to.have.been.calledWith(payload)
   })
 
-  it('should register input event listeners', async () => {
-    // Arrange
-    const index = 2
-    const nickname = 'Mega'
-    const element = el(
-      'input',
-      [],
-      { 'data-index': index, type: 'text', value: nickname }
-    )
-    document.body.appendChild(element)
-    const payload = setNickname(index, nickname)
-    const event = new InputEvent('input', { bubbles: true, cancelable: true })
+  describe('when triggered an input event', () => {
+    it('should update the isBot for radio input elements', async () => {
+      // Arrange
+      const index = 2
+      const isBot = true
+      const element = el(
+        'input',
+        [],
+        { 'data-index': index, type: 'radio', value: isBot }
+      )
+      document.body.appendChild(element)
+      const payload = setIsBot(index, isBot)
+      const event = new InputEvent('input', { bubbles: true, cancelable: true })
 
-    const dispatchSpy = sinon.spy(store, 'dispatch')
+      const dispatchSpy = sinon.spy(store, 'dispatch')
 
-    // Act
-    registerEventListeners()
-    element.dispatchEvent(event)
+      // Act
+      registerEventListeners()
+      element.dispatchEvent(event)
 
-    // Assert
-    // Standard is tripped up by Chai here
-    // eslint-disable-next-line no-unused-expressions
-    expect(dispatchSpy).to.have.been.calledOnce
-    expect(dispatchSpy).to.have.been.calledWith(payload)
+      // Assert
+      // Standard is tripped up by Chai here
+      // eslint-disable-next-line no-unused-expressions
+      expect(dispatchSpy).to.have.been.calledOnce
+      expect(dispatchSpy).to.have.been.calledWith(payload)
+    })
+
+    it('should update the nickname for text input elements', async () => {
+      // Arrange
+      const index = 2
+      const nickname = 'Mega'
+      const element = el(
+        'input',
+        [],
+        { 'data-index': index, type: 'text', value: nickname }
+      )
+      document.body.appendChild(element)
+      const payload = setNickname(index, nickname)
+      const event = new InputEvent('input', { bubbles: true, cancelable: true })
+
+      const dispatchSpy = sinon.spy(store, 'dispatch')
+
+      // Act
+      registerEventListeners()
+      element.dispatchEvent(event)
+
+      // Assert
+      // Standard is tripped up by Chai here
+      // eslint-disable-next-line no-unused-expressions
+      expect(dispatchSpy).to.have.been.calledOnce
+      expect(dispatchSpy).to.have.been.calledWith(payload)
+    })
   })
 })
