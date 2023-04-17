@@ -47,9 +47,8 @@ function layoutPlayers (state) {
  * @returns {HTMLDivElement}
  */
 function buildScene (state) {
-  const container = /** @type {HTMLDivElement} */(el('div', [], {}, '', [['h1', [], {}, 'Level Scene']]))
-  const players = layoutPlayers(state)
-  container.appendChild(players)
+  const container = /** @type {HTMLDivElement} */(el('div'))
+  container.appendChild(layoutPlayers(state))
 
   const transitions = getTransitionsForSceneFromState(state, 'level')
   const anchors = mapTransitionsToLinks(transitions)

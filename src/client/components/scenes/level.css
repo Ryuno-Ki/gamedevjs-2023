@@ -1,0 +1,24 @@
+#level,
+#level > div {
+  height: 100%;
+  width: 100%;
+}
+
+#level div {
+  display: flex;
+  flex-direction: column;
+}
+
+#level .players {
+  align-content: space-between;
+  display: grid;
+  grid-template-columns: auto auto;
+  height: 100%;
+  justify-content: space-between;
+  width: 100%;
+  z-index: 1;
+}
+
+#level .player {
+  border: 1px solid currentColor;
+}
