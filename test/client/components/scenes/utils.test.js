@@ -2,10 +2,34 @@ import chai from 'chai'
 import chaiDom from 'chai-dom'
 
 import { document } from '../../../prepare.js'
-import { mapTransitionsToLinks } from '../../../../src/client/components/scenes/utils.js'
+import {
+  mapDegToRadians,
+  mapTransitionsToLinks
+} from '../../../../src/client/components/scenes/utils.js'
 
 chai.use(chaiDom)
 const { expect } = chai
+
+describe('mapDegToRadians', () => {
+  it('should convert degrees to radians', () => {
+    // Arrange
+    const degrees = [
+      [0, 0],
+      [30, Math.PI / 6],
+      [45, Math.PI / 4],
+      [60, Math.PI / 3],
+      [90, Math.PI / 2]
+    ]
+
+    // Act
+    const radians = degrees.map((degree) => mapDegToRadians(degree[0]))
+
+    // Assert
+    radians.forEach((radian, index) => {
+      expect(radian).to.equal(degrees[index][1])
+    })
+  })
+})
 
 describe('mapTransitionsToLinks', () => {
   beforeEach(() => {
