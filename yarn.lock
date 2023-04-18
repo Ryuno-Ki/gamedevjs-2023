@@ -1546,6 +1546,11 @@ eslint@^8.13.0:
     strip-json-comments "^3.1.0"
     text-table "^0.2.0"
 
+esm-seedrandom@3.0.5:
+  version "3.0.5"
+  resolved "https://registry.yarnpkg.com/esm-seedrandom/-/esm-seedrandom-3.0.5.tgz#2411adb5864e71c71613907df4cbe831f29fcd2e"
+  integrity sha512-pMAq0mFIr5JQ3Ihbng7EBLMJ+llMbaDKkiG44pqbSXS0NIZWtEANpOpxb5s6Q8Q2R562P26qMHPv8YtP/NHh9g==
+
 espree@^9.5.1:
   version "9.5.1"
   resolved "https://registry.yarnpkg.com/espree/-/espree-9.5.1.tgz#4f26a4d5f18905bf4f2e0bd99002aab807e96dd4"
