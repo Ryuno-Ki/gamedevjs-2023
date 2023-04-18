@@ -77,7 +77,34 @@ describe('levelSceneComponent', () => {
 
       // Assert
       expect(component).to.have.descendant('svg')
-      expect(component).to.have.descendants('polygon').and.have.length(2)
+      expect(component).to.have.descendants('polygon').and.have.length(3)
+    })
+
+    it('should stay within the bounds of the world', () => {
+      // Arrange
+      const state = Object.assign(
+        {},
+        initialState,
+        {
+          activeScene: 'level',
+          activeWorld: 'test',
+          worlds: [{
+            id: 'test',
+            // A length of 52 is shooting over the top end, for example
+            cubeLength: 30
+          }]
+        }
+      )
+      const faces = ['left', 'right', 'top']
+
+      // Act
+      const component = levelSceneComponent(document.body, state)
+
+      // Assert
+      faces.forEach((face) => {
+        // Basically to not cross the top or left edge (designed with a minus)
+        expect(component).to.have.descendant(`polygon.${face}`).and.have.attribute('points').match(/^[^-]+$/)
+      })
     })
 
     it('should render links to transition to other scenes', () => {
