@@ -13,26 +13,29 @@ import { mapDegToRadians, mapTransitionsToLinks } from './utils.js'
  *
  * @private
  * @param {State} state
- * @returns HTMLDivElement
+ * @returns {SVGGElement}
  */
 function layoutPlayers (state) {
   const emojis = openmojis.find((emoji) => emoji.hexcode === '1F916')
   const robot = emojis ? emojis.emoji : ''
   const players = state.players.map((player, index) => {
+    const x = index % 2 ? 70 : 0
+    const y = index > 1 ? 70 : 0
+
     return [
-      'div',
+      'text',
       ['player'],
-      { 'data-index': index },
+      { 'data-index': index, x, y },
       '',
       [
-        ['div', ['avatar'], {}, robot],
-        ['span', ['nickname'], {}, player.name]
+        ['tspan', ['avatar'], { dx: 10, dy: 10 }, robot],
+        ['tspan', ['nickname'], { dx: 5, dy: 20 }, player.name]
       ]
     ]
   })
 
-  const container = /** @type {HTMLDivElement} */(el(
-    'div',
+  const container = /** @type {SVGGElement} */(svg(
+    'g',
     ['players'],
     {},
     '',
@@ -136,7 +139,7 @@ function layoutTopField (cubeLength) {
  *
  * @private
  * @param {State} state
- * @returns SVGElement
+ * @returns {SVGElement}
  */
 function layoutField (state) {
   const id = state.activeWorld
@@ -159,6 +162,7 @@ function layoutField (state) {
   }
 
   const { cubeLength } = /** @type {World} */(world)
+  container.appendChild(layoutPlayers(state))
   container.appendChild(layoutLeftField(cubeLength))
   container.appendChild(layoutRightField(cubeLength))
   container.appendChild(layoutTopField(cubeLength))
@@ -174,7 +178,6 @@ function layoutField (state) {
  */
 function buildScene (state) {
   const container = /** @type {HTMLDivElement} */(el('div'))
-  container.appendChild(layoutPlayers(state))
   container.appendChild(layoutField(state))
 
   const transitions = getTransitionsForSceneFromState(state, 'level')
