@@ -11,6 +11,8 @@ export namespace initialState {
     export const worlds: {
         id: string;
         cubeLength: number;
+        facesPerColumn: number;
+        facesPerRow: number;
     }[];
 }
 /**
@@ -26,6 +28,8 @@ export type Player = {
 export type World = {
     id: string;
     cubeLength: number;
+    facesPerColumn: number;
+    facesPerRow: number;
 };
 export type State = {
     activeScene: Scene;
@@ -48,6 +52,8 @@ export type State = {
  * @typedef {object} World
  * @property {string} World.id
  * @property {number} World.cubeLength
+ * @property {number} World.facesPerColumn
+ * @property {number} World.facesPerRow
  */
 /**
  * @typedef {object} State

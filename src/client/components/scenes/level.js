@@ -45,33 +45,59 @@ function layoutPlayers (state) {
 }
 
 /**
- * Build the DOM to place the left face of the cube.
+ * Build the DOM for a face of the left field.
  *
  * @private
- * @param {number} cubeLength
- * @returns {SVGPolygonElement}
+ * @param {Array<Array<number>>} points
+ * @returns {*}
  */
-function layoutLeftField (cubeLength) {
-  const isometricAngle = mapDegToRadians(30)
-  const diagonalHeight = cubeLength * Math.sin(isometricAngle)
-  const diagonalWidth = cubeLength * Math.cos(isometricAngle)
-  const totalHeight = cubeLength + diagonalHeight
-  const verticalPadding = (100 - totalHeight) / 2
-
-  const points = [
-    [50, 100 - verticalPadding],
-    [50, 100 - verticalPadding - cubeLength],
-    [50 - diagonalWidth, 100 - verticalPadding - cubeLength - diagonalHeight],
-    [50 - diagonalWidth, 100 - verticalPadding - diagonalHeight]
-  ]
-
-  const face = /** @type {SVGPolygonElement} */(svg(
+function layoutLeftFieldFace (points) {
+  return [
     'polygon',
     ['left', 'face'],
     { points: points.map((point) => point.join(',')).join(' ') }
-  ))
+  ]
+}
 
-  return face
+/**
+ * Build the DOM to place the left face of the cube.
+ *
+ * @private
+ * @param {World} world
+ * @returns {SVGGElement}
+ */
+function layoutLeftFields (world) {
+  const { cubeLength } = world
+  const rowHeight = cubeLength / world.facesPerRow
+  const columnWidth = cubeLength / world.facesPerColumn
+
+  const isometricAngle = mapDegToRadians(30)
+  const diagonalHeight = rowHeight * Math.sin(isometricAngle)
+  const diagonalWidth = columnWidth * Math.cos(isometricAngle)
+  const totalHeight = cubeLength + diagonalHeight
+  const verticalPadding = (100 - totalHeight) / 2
+
+  /** @type {Array<Array<Array<number>>>} */
+  const points = []
+  for (let i = 0; i < world.facesPerRow; i++) {
+    for (let j = 0; i < world.facesPerColumn; j++) {
+      points.push([
+        [50 - j * columnWidth, 100 - verticalPadding - i * rowHeight],
+        [50 - j * columnWidth, 100 - verticalPadding - (i + 1) * rowHeight],
+        [50 - (j + 1) * diagonalWidth, 100 - verticalPadding - (i + 1) * rowHeight],
+        [50 - (j + 1) * diagonalWidth, 100 - verticalPadding - i * rowHeight]
+      ])
+    }
+  }
+
+  const faces = /** @type {SVGGElement} */(svg(
+    'g',
+    ['left', 'face'],
+    {},
+    '',
+    points.map((point) => layoutLeftFieldFace(point))
+  ))
+  return faces
 }
 
 /**
@@ -143,7 +169,7 @@ function layoutTopField (cubeLength) {
  */
 function layoutField (state) {
   const id = state.activeWorld
-  const world = state.worlds.find((world) => world.id === id) || {}
+  const world = state.worlds.find((world) => world.id === id) || null
 
   const container = /** @type {SVGElement} */(svg(
     'svg',
@@ -163,7 +189,7 @@ function layoutField (state) {
 
   const { cubeLength } = /** @type {World} */(world)
   container.appendChild(layoutPlayers(state))
-  container.appendChild(layoutLeftField(cubeLength))
+  container.appendChild(layoutLeftFields(world))
   container.appendChild(layoutRightField(cubeLength))
   container.appendChild(layoutTopField(cubeLength))
   return container

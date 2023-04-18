@@ -16,6 +16,8 @@ import { scenes } from './fsm/scenes.js'
  * @typedef {object} World
  * @property {string} World.id
  * @property {number} World.cubeLength
+ * @property {number} World.facesPerColumn
+ * @property {number} World.facesPerRow
  */
 
 /**
@@ -50,6 +52,8 @@ export const initialState = {
   scenes,
   worlds: [{
     id: defaultWorldId,
-    cubeLength: 30
+    cubeLength: 30,
+    facesPerColumn: 1,
+    facesPerRow: 1
   }]
 }
