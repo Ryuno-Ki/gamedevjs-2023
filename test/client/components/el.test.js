@@ -28,7 +28,7 @@ describe('el', () => {
             const element = el(name)
 
             // Assert
-            expect(element).to.have.tagName('div')
+            expect(element).to.have.tagName(name)
             // Standard is tripped up by Chai here
             // eslint-disable-next-line no-unused-expressions
             expect(element).to.not.have.class
@@ -52,7 +52,7 @@ describe('el', () => {
             const element = el(name, [], {}, '', children)
 
             // Assert
-            expect(element).to.have.tagName('div')
+            expect(element).to.have.tagName(name)
             // Standard is tripped up by Chai here
             // eslint-disable-next-line no-unused-expressions
             expect(element).to.not.have.class
@@ -77,7 +77,7 @@ describe('el', () => {
             const element = el(name, [], {}, text)
 
             // Assert
-            expect(element).to.have.tagName('div')
+            expect(element).to.have.tagName(name)
             // Standard is tripped up by Chai here
             // eslint-disable-next-line no-unused-expressions
             expect(element).to.not.have.class
@@ -102,7 +102,7 @@ describe('el', () => {
             const element = el(name, [], {}, text, children)
 
             // Assert
-            expect(element).to.have.tagName('div')
+            expect(element).to.have.tagName(name)
             // Standard is tripped up by Chai here
             // eslint-disable-next-line no-unused-expressions
             expect(element).to.not.have.class
@@ -130,7 +130,7 @@ describe('el', () => {
             const element = el(name, [], attributes)
 
             // Assert
-            expect(element).to.have.tagName('div')
+            expect(element).to.have.tagName(name)
             // Standard is tripped up by Chai here
             // eslint-disable-next-line no-unused-expressions
             expect(element).to.not.have.class
@@ -154,7 +154,7 @@ describe('el', () => {
             const element = el(name, [], attributes, '', children)
 
             // Assert
-            expect(element).to.have.tagName('div')
+            expect(element).to.have.tagName(name)
             // Standard is tripped up by Chai here
             // eslint-disable-next-line no-unused-expressions
             expect(element).to.not.have.class
@@ -179,7 +179,7 @@ describe('el', () => {
             const element = el(name, [], attributes, text)
 
             // Assert
-            expect(element).to.have.tagName('div')
+            expect(element).to.have.tagName(name)
             // Standard is tripped up by Chai here
             // eslint-disable-next-line no-unused-expressions
             expect(element).to.not.have.class
@@ -204,7 +204,7 @@ describe('el', () => {
             const element = el(name, [], attributes, text, children)
 
             // Assert
-            expect(element).to.have.tagName('div')
+            expect(element).to.have.tagName(name)
             // Standard is tripped up by Chai here
             // eslint-disable-next-line no-unused-expressions
             expect(element).to.not.have.class
@@ -231,7 +231,7 @@ describe('el', () => {
             const element = el(name, classList)
 
             // Assert
-            expect(element).to.have.tagName('div')
+            expect(element).to.have.tagName(name)
             classList.forEach((className) => {
               expect(element).to.have.class(className)
             })
@@ -256,7 +256,7 @@ describe('el', () => {
             const element = el(name, classList, {}, '', children)
 
             // Assert
-            expect(element).to.have.tagName('div')
+            expect(element).to.have.tagName(name)
             classList.forEach((className) => {
               expect(element).to.have.class(className)
             })
@@ -282,7 +282,7 @@ describe('el', () => {
             const element = el(name, classList, {}, text)
 
             // Assert
-            expect(element).to.have.tagName('div')
+            expect(element).to.have.tagName(name)
             classList.forEach((className) => {
               expect(element).to.have.class(className)
             })
@@ -308,7 +308,7 @@ describe('el', () => {
             const element = el(name, classList, {}, text, children)
 
             // Assert
-            expect(element).to.have.tagName('div')
+            expect(element).to.have.tagName(name)
             classList.forEach((className) => {
               expect(element).to.have.class(className)
             })
@@ -337,7 +337,7 @@ describe('el', () => {
             const element = el(name, classList, attributes)
 
             // Assert
-            expect(element).to.have.tagName('div')
+            expect(element).to.have.tagName(name)
             classList.forEach((className) => {
               expect(element).to.have.class(className)
             })
@@ -362,7 +362,7 @@ describe('el', () => {
             const element = el(name, classList, attributes, '', children)
 
             // Assert
-            expect(element).to.have.tagName('div')
+            expect(element).to.have.tagName(name)
             classList.forEach((className) => {
               expect(element).to.have.class(className)
             })
@@ -388,7 +388,7 @@ describe('el', () => {
             const element = el(name, classList, attributes, text)
 
             // Assert
-            expect(element).to.have.tagName('div')
+            expect(element).to.have.tagName(name)
             classList.forEach((className) => {
               expect(element).to.have.class(className)
             })
@@ -414,7 +414,7 @@ describe('el', () => {
             const element = el(name, classList, attributes, text, children)
 
             // Assert
-            expect(element).to.have.tagName('div')
+            expect(element).to.have.tagName(name)
             classList.forEach((className) => {
               expect(element).to.have.class(className)
             })
