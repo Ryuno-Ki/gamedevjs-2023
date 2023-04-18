@@ -5,8 +5,6 @@ module.exports = {
   'check-leaks': false,
   'forbid-only': true,
   'forbid-pending': true,
-  global: [
-  ],
   parallel: true,
   recursive: true,
   reporter: 'nyan'
