@@ -9,3 +9,4 @@ a daily journal.
 * [14th April 2023](./2023-04-14.md)
 * [15th April 2023](./2023-04-15.md)
 * [16th April 2023](./2023-04-16.md)
+* [17th April 2023](./2023-04-17.md)
