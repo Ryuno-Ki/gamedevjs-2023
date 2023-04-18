@@ -42,6 +42,36 @@ function layoutPlayers (state) {
 }
 
 /**
+ * Build the DOM to place the left field of the cube.
+ *
+ * @private
+ * @param {number} cubeLength
+ * @returns {SVGPolygonElement}
+ */
+function layoutRightField (cubeLength) {
+  const isometricAngle = mapDegToRadians(30)
+  const diagonalHeight = cubeLength * Math.sin(isometricAngle)
+  const diagonalWidth = cubeLength * Math.cos(isometricAngle)
+  const totalHeight = cubeLength + diagonalHeight
+  const verticalPadding = (100 - totalHeight) / 2
+
+  const points = [
+    [50, 100 - verticalPadding],
+    [50, 100 - verticalPadding - cubeLength],
+    [50 + diagonalWidth, 100 - verticalPadding - cubeLength - diagonalHeight],
+    [50 + diagonalWidth, 100 - verticalPadding - diagonalHeight]
+  ]
+
+  const face = /** @type {SVGPolygonElement} */(svg(
+    'polygon',
+    ['right', 'face'],
+    { points: points.map((point) => point.join(',')).join(' ') }
+  ))
+
+  return face
+}
+
+/**
  * Build the DOM to place the field on the UI.
  *
  * @private
@@ -69,24 +99,7 @@ function layoutField (state) {
   }
 
   const { cubeLength } = /** @type {World} */(world)
-  const isometricAngle = mapDegToRadians(30)
-  const diagonalHeight = cubeLength * Math.sin(isometricAngle)
-  const diagonalWidth = cubeLength * Math.cos(isometricAngle)
-  const totalHeight = cubeLength + diagonalHeight
-  const verticalPadding = (100 - totalHeight) / 2
-
-  const points = [
-    [50, 100 - verticalPadding],
-    [50, 100 - verticalPadding - cubeLength],
-    [50 + diagonalWidth, 100 - verticalPadding - cubeLength - diagonalHeight],
-    [50 + diagonalWidth, 100 - verticalPadding - diagonalHeight]
-  ]
-
-  container.appendChild(/** @type {SVGElement} */(svg(
-    'polygon',
-    ['cube'],
-    { points: points.map((point) => point.join(',')).join(' ') }
-  )))
+  container.appendChild(layoutRightField(cubeLength))
   return container
 }
 
