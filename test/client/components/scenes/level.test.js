@@ -77,7 +77,7 @@ describe('levelSceneComponent', () => {
 
       // Assert
       expect(component).to.have.descendant('svg')
-      expect(component).to.have.descendant('polygon')
+      expect(component).to.have.descendants('polygon').and.have.length(2)
     })
 
     it('should render links to transition to other scenes', () => {
