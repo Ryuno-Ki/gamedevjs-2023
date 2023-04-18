@@ -80,7 +80,7 @@ function layoutLeftFields (world) {
   /** @type {Array<Array<Array<number>>>} */
   const points = []
   for (let i = 0; i < world.facesPerRow; i++) {
-    for (let j = 0; i < world.facesPerColumn; j++) {
+    for (let j = 0; j < world.facesPerColumn; j++) {
       points.push([
         [50 - j * columnWidth, 100 - verticalPadding - i * rowHeight],
         [50 - j * columnWidth, 100 - verticalPadding - (i + 1) * rowHeight],
