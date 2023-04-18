@@ -50,6 +50,6 @@ export const initialState = {
   scenes,
   worlds: [{
     id: defaultWorldId,
-    cubeLength: 52
+    cubeLength: 30
   }]
 }
