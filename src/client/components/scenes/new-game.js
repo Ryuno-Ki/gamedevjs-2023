@@ -73,9 +73,11 @@ function buildScene (state) {
   const fieldsets = mapPlayersToFieldsets(state.players)
   fieldsets.forEach((fieldset) => container.appendChild(fieldset))
 
+  const actions = /** @type {HTMLDivElement} */(el('div', ['actions']))
   const transitions = getTransitionsForSceneFromState(state, 'new-game')
   const anchors = mapTransitionsToLinks(transitions)
-  anchors.forEach((anchor) => container.appendChild(anchor))
+  anchors.forEach((anchor) => actions.appendChild(anchor))
+  container.append(actions)
 
   return container
 }
