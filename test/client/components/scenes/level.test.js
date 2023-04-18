@@ -57,6 +57,29 @@ describe('levelSceneComponent', () => {
       })
     })
 
+    it('should render the world', () => {
+      // Arrange
+      const state = Object.assign(
+        {},
+        initialState,
+        {
+          activeScene: 'level',
+          activeWorld: 'test',
+          worlds: [{
+            id: 'test',
+            cubeLength: 1
+          }]
+        }
+      )
+
+      // Act
+      const component = levelSceneComponent(document.body, state)
+
+      // Assert
+      expect(component).to.have.descendant('svg')
+      expect(component).to.have.descendant('polygon')
+    })
+
     it('should render links to transition to other scenes', () => {
       // Arrange
       const state = Object.assign({}, initialState, { activeScene: 'level' })
