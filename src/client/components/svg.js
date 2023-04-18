@@ -7,7 +7,7 @@
  * @param {Array<*>} children - Recursively invoke this function
  * @returns {SVGElement}
  */
-export function svg (name, classList = [], attributes = {}, children = []) {
+export function svg (name, classList = [], attributes = {}, text = '', children = []) {
   const element = document.createElementNS('http://www.w3.org/2000/svg', name)
   classList.forEach((className) => element.classList.add(className))
 
@@ -15,6 +15,8 @@ export function svg (name, classList = [], attributes = {}, children = []) {
     const [key, value] = attribute
     element.setAttribute(key, value)
   })
+
+  element.appendChild(document.createTextNode(text))
 
   children.forEach((child) => {
     // FIXME: Investigate type error here

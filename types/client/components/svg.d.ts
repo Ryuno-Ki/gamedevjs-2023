@@ -9,4 +9,4 @@
  */
 export function svg(name: string, classList?: Array<string>, attributes?: {
     [x: string]: string;
-}, children?: Array<any>): SVGElement;
+}, text?: string, children?: Array<any>): SVGElement;
