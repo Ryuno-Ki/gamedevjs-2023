@@ -23,7 +23,7 @@ describe('getTransitionsForSceneFromState', () => {
       it('should return an empty Array', () => {
         // Arrange
         const state = Object.assign({}, initialState)
-        const scene = 'level'
+        const scene = 'unknown'
 
         // Act
         const transitions = getTransitionsForSceneFromState(state, scene)

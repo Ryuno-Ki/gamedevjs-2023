@@ -41,7 +41,22 @@ export const scenes = {
         }
       }
     },
+    gameover: {
+      on: {
+        navigateToTitle: {
+          target: 'title'
+        }
+      }
+    },
     level: {
+      on: {
+        navigateToGameover: {
+          target: 'gameover'
+        },
+        navigateToWin: {
+          target: 'win'
+        }
+      }
     },
     'new-game': {
       on: {
@@ -70,6 +85,13 @@ export const scenes = {
         },
         navigateToSettings: {
           target: 'settings'
+        }
+      }
+    },
+    win: {
+      on: {
+        navigateToTitle: {
+          target: 'title'
         }
       }
     }

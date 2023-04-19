@@ -11,7 +11,23 @@ export namespace scenes {
                 };
             };
         };
-        level: {};
+        gameover: {
+            on: {
+                navigateToTitle: {
+                    target: string;
+                };
+            };
+        };
+        level: {
+            on: {
+                navigateToGameover: {
+                    target: string;
+                };
+                navigateToWin: {
+                    target: string;
+                };
+            };
+        };
         'new-game': {
             on: {
                 navigateToLevel: {
@@ -38,6 +54,13 @@ export namespace scenes {
                     target: string;
                 };
                 navigateToSettings: {
+                    target: string;
+                };
+            };
+        };
+        win: {
+            on: {
+                navigateToTitle: {
                     target: string;
                 };
             };

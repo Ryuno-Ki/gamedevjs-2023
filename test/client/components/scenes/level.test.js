@@ -119,9 +119,7 @@ describe('levelSceneComponent', () => {
       const component = levelSceneComponent(document.body, state)
 
       // Assert
-      // At this point in time there are no transitions from the level
-      // There will be win and game over scenes later
-      expect(component).not.to.contain('a')
+      expect(component).to.contain('a')
     })
   })
 
