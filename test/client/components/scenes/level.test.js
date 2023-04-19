@@ -67,7 +67,9 @@ describe('levelSceneComponent', () => {
           activeWorld: 'test',
           worlds: [{
             id: 'test',
-            cubeLength: 1
+            cubeLength: 1,
+            facesPerColumn: 1,
+            facesPerRow: 1
           }]
         }
       )
@@ -91,7 +93,9 @@ describe('levelSceneComponent', () => {
           worlds: [{
             id: 'test',
             // A length of 52 is shooting over the top end, for example
-            cubeLength: 30
+            cubeLength: 30,
+            facesPerColumn: 1,
+            facesPerRow: 1
           }]
         }
       )
