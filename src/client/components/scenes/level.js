@@ -49,12 +49,13 @@ function layoutPlayers (state) {
  *
  * @private
  * @param {Array<Array<number>>} points
+ * @param {'left' | 'right' | 'top'} direction
  * @returns {*}
  */
-function layoutLeftFieldFace (points) {
+function face (points, direction) {
   return [
     'polygon',
-    ['left', 'face'],
+    [direction, 'face'],
     { points: points.map((point) => point.join(',')).join(' ') }
   ]
 }
@@ -95,7 +96,7 @@ function layoutLeftFields (world) {
     ['left', 'face'],
     {},
     '',
-    points.map((point) => layoutLeftFieldFace(point))
+    points.map((point) => face(point, 'left'))
   ))
   return faces
 }
