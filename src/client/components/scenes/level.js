@@ -85,8 +85,8 @@ function layoutLeftFields (world) {
       points.push([
         [50 - j * diagonalWidth, 100 - verticalPadding - i * rowHeight],
         [50 - j * diagonalWidth, 100 - verticalPadding - (i + 1) * rowHeight],
-        [50 - (j + 1) * diagonalWidth, 100 - verticalPadding - (i + 1) * rowHeight],
-        [50 - (j + 1) * diagonalWidth, 100 - verticalPadding - i * rowHeight]
+        [50 - (j + 1) * diagonalWidth, 100 - verticalPadding - (i + 1) * rowHeight - diagonalHeight],
+        [50 - (j + 1) * diagonalWidth, 100 - verticalPadding - i * rowHeight - diagonalHeight]
       ])
     }
   }
@@ -124,10 +124,10 @@ function layoutRightField (world) {
   for (let i = 0; i < facesPerRow; i++) {
     for (let j = 0; j < facesPerColumn; j++) {
       points.push([
-        [50 + j * diagonalWidth, 100 - verticalPadding - i * rowHeight],
+        [50 + j * diagonalWidth, 100 - verticalPadding],
         [50 + j * diagonalWidth, 100 - verticalPadding - (i + 1) * rowHeight],
-        [50 + (j + 1) * diagonalWidth, 100 - verticalPadding - (i + 1) * rowHeight],
-        [50 + (j + 1) * diagonalWidth, 100 - verticalPadding - i * rowHeight]
+        [50 + (j + 1) * diagonalWidth, 100 - verticalPadding - (i + 1) * rowHeight - diagonalHeight],
+        [50 + (j + 1) * diagonalWidth, 100 - verticalPadding - diagonalHeight]
       ])
     }
   }
