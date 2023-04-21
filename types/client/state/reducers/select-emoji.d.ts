@@ -1,4 +1,6 @@
-/** @typedef {import('../store').State} State */
+/** @typedef {import('../initial').Round} Round */
+/** @typedef {import('../initial').State} State */
+/** @typedef {import('../initial').World} World */
 /**
  * @typedef {object} payload
  * @property {string} payload.emoji
@@ -11,7 +13,9 @@
  * @returns {State}
  */
 export function selectEmoji(state: State, payload: payload): State;
-export type State = import('../store').State;
+export type Round = import('../initial').Round;
+export type State = import('../initial').State;
+export type World = import('../initial').World;
 export type payload = {
     emoji: string;
 };
