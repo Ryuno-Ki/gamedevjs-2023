@@ -217,26 +217,33 @@ function layoutRound (state) {
   const { activeRound, activeWorld, rounds, worlds } = state
   const world = worlds.find((world) => world.id === activeWorld) || null
 
-  const round = activeRound !== null ? rounds[activeRound].round : 'Invalid'
+  const round = activeRound !== null ? rounds[activeRound] : null
+
   /** @type {Array<string>} */
   const options = world !== null
     ? /** @type {Array<string>} */([]).concat(world.solution)
     : /** @type {Array<string>} */([])
   options.sort()
 
+  const roundText = round !== null ? `Round ${round.round}` : 'Invalid round'
+  const turnText = round !== null ? `Turn ${round.turns.join(', ')}` : 'No turns'
+  const children = [
+    /** @type {*} */(['option', [], { checked: 'checked', value: '' }, 'Pick'])
+  ].concat(
+    options.map((option) => {
+      const emojis = openmojis.find((emoji) => emoji.hexcode === option)
+      const display = emojis ? emojis.emoji : 'Invalid'
+      return ['option', [], { value: option }, display]
+    })
+  )
+
   const container = /** @type {HTMLDivElement} */(el(
     'div',
     [],
     {},
-    `Round ${round}`,
+    [roundText, turnText].join(' / '),
     [
-      ['select', [], {}, '',
-        options.map((option) => {
-          const emojis = openmojis.find((emoji) => emoji.hexcode === option)
-          const display = emojis ? emojis.emoji : 'Invalid'
-          return ['option', [], { value: option }, display]
-        })
-      ]
+      ['select', [], {}, '', children]
     ]
   ))
 
