@@ -13,6 +13,7 @@ import { mapTransitionsToLinks } from './utils.js'
  * @returns {HTMLDivElement}
  */
 function buildScene (state) {
+  const license = ['p', [], {}, 'This game is licensed under AGPL v3 or later.']
   const openmoji = ['p', [], {}, '', [
     ['span', [], {}, 'All emojis designed by '],
     ['a', [], { href: 'https://openmoji.org/' }, 'OpenMoji'],
@@ -21,6 +22,7 @@ function buildScene (state) {
   ]]
   const container = /** @type {HTMLDivElement} */(el('div', [], {}, '', [
     ['h1', [], {}, 'About Scene'],
+    license,
     openmoji
   ]))
 
