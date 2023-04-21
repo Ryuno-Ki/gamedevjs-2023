@@ -1,5 +1,3 @@
-/** @typedef {import('../actions/index').Action} Action */
-/** @typedef {import('../initial').State} State */
 /**
  * Combined reducer to delegate depending on action.type.
  *

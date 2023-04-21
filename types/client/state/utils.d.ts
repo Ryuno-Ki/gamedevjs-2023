@@ -1,5 +1,3 @@
-/** @typedef {import('../components/scenes/index').Scene} Scene */
-/** @typedef {import('./initial').State} State */
 /**
  * Extracts the transitions from given scene from state.
  *

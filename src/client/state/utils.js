@@ -1,5 +1,9 @@
+import { getLogger } from '../../logger.js'
+
 /** @typedef {import('../components/scenes/index').Scene} Scene */
 /** @typedef {import('./initial').State} State */
+
+const logger = getLogger('utils')
 
 /**
  * Extracts the transitions from given scene from state.
@@ -13,13 +17,13 @@ export function getTransitionsForSceneFromState (state, scene) {
   const sceneState = states[scene]
 
   if (!sceneState) {
-    console.info('Expected scene but found none', scene)
+    logger.info('Expected scene but found none', scene)
     return []
   }
 
   const transitionEvents = sceneState ? sceneState.on : []
   if (!transitionEvents) {
-    console.info('Expected transitions from scene but found none')
+    logger.info('Expected transitions from scene but found none')
     return []
   }
 

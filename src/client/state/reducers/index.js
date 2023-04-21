@@ -1,4 +1,3 @@
-import { initialState } from '../initial.js'
 import {
   SELECT_EMOJI,
   SET_IS_BOT,
@@ -6,6 +5,8 @@ import {
   SWITCH_TO_SCENE,
   TICK
 } from '../../../constants.js'
+import { getLogger } from '../../../logger.js'
+import { initialState } from '../initial.js'
 import { selectEmoji } from './select-emoji.js'
 import { setIsBot } from './set-is-bot.js'
 import { setNickname } from './set-nickname.js'
@@ -14,6 +15,8 @@ import { tick } from './tick.js'
 
 /** @typedef {import('../actions/index').Action} Action */
 /** @typedef {import('../initial').State} State */
+
+const logger = getLogger('reducer')
 
 /**
  * Combined reducer to delegate depending on action.type.
@@ -54,7 +57,7 @@ export function reducer (state, action) {
         /** @type {import('../actions/tick').Action} */(action).payload
       )
     default:
-      console.debug('Unknown action type', action.type)
+      logger.debug('Unknown action type', action.type)
       return state
   }
 }
