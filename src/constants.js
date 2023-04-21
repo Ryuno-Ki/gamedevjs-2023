@@ -1,4 +1,5 @@
 export const APP_SELECTOR = '#app'
+export const SELECT_EMOJI = 'SELECT_EMOJI'
 export const SET_IS_BOT = 'SET_IS_BOT'
 export const SET_NICKNAME = 'SET_NICKNAME'
 export const SWITCH_TO_SCENE = 'SWITCH_TO_SCENE'
