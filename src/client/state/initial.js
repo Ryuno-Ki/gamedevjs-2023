@@ -14,7 +14,7 @@ import { scenes } from './fsm/scenes.js'
 
 /**
  * @typedef {object} Round
- * @property {string} Round.previousRound
+ * @property {string | null} Round.previousRound
  * @property {number} Round.round
  * @property {Array<string>} Round.turns
  */
@@ -34,7 +34,7 @@ import { scenes } from './fsm/scenes.js'
 
 /**
  * @typedef {object} State
- * @property {Round['round'] | null} State.activeRound
+ * @property {string | null} State.activeRound
  * @property {Scene} State.activeScene
  * @property {string} State.activeWorld
  * @property {Array<number>} State.clock

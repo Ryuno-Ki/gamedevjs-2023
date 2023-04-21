@@ -1,3 +1,5 @@
+import { nanoid } from 'nanoid'
+
 import { getTransitionsForSceneFromState } from '../utils.js'
 
 /** @typedef {import('../../components/scenes/index').Scene} Scene */
@@ -16,14 +18,30 @@ import { getTransitionsForSceneFromState } from '../utils.js'
  * @returns {State}
  */
 export function switchToScene (state, payload) {
-  let { activeScene, gameStatus } = state
+  let { activeRound, activeScene, gameStatus, rounds } = state
 
   const transitions = getTransitionsForSceneFromState(state, activeScene)
+
+  if (payload.scene === 'level' && activeScene === 'new-game') {
+    const id = nanoid()
+    activeRound = id
+    rounds = {
+      [id]: {
+        previousRound: null,
+        round: 1,
+        turns: []
+      }
+    }
+  }
 
   if (transitions.includes(payload.scene)) {
     activeScene = payload.scene
     gameStatus = 'INITIALISED'
   }
 
-  return Object.assign({}, state, { activeScene, gameStatus })
+  return Object.assign(
+    {},
+    state,
+    { activeRound, activeScene, gameStatus, rounds }
+  )
 }

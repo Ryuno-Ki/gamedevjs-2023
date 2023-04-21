@@ -29,7 +29,7 @@ export type Player = {
     name: string;
 };
 export type Round = {
-    previousRound: string;
+    previousRound: string | null;
     round: number;
     turns: Array<string>;
 };
@@ -44,7 +44,7 @@ export type World = {
     solution: Array<string>;
 };
 export type State = {
-    activeRound: Round['round'] | null;
+    activeRound: string | null;
     activeScene: Scene;
     activeWorld: string;
     clock: Array<number>;
@@ -64,7 +64,7 @@ export type State = {
  */
 /**
  * @typedef {object} Round
- * @property {string} Round.previousRound
+ * @property {string | null} Round.previousRound
  * @property {number} Round.round
  * @property {Array<string>} Round.turns
  */
@@ -81,7 +81,7 @@ export type State = {
  */
 /**
  * @typedef {object} State
- * @property {Round['round'] | null} State.activeRound
+ * @property {string | null} State.activeRound
  * @property {Scene} State.activeScene
  * @property {string} State.activeWorld
  * @property {Array<number>} State.clock
