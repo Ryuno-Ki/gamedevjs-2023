@@ -214,13 +214,30 @@ function layoutField (state) {
  * @returns {HTMLDivElement}
  */
 function layoutRound (state) {
-  const { activeRound, rounds } = state
+  const { activeRound, activeWorld, rounds, worlds } = state
+  const world = worlds.find((world) => world.id === activeWorld) || null
+
   const round = activeRound !== null ? rounds[activeRound].round : 'Invalid'
+  /** @type {Array<string>} */
+  const options = world !== null
+    ? /** @type {Array<string>} */([]).concat(world.solution)
+    : /** @type {Array<string>} */([])
+  options.sort()
+
   const container = /** @type {HTMLDivElement} */(el(
     'div',
     [],
     {},
-    `Round ${round}`
+    `Round ${round}`,
+    [
+      ['select', [], {}, '',
+        options.map((option) => {
+          const emojis = openmojis.find((emoji) => emoji.hexcode === option)
+          const display = emojis ? emojis.emoji : 'Invalid'
+          return ['option', [], { value: option }, display]
+        })
+      ]
+    ]
   ))
 
   return container
