@@ -1,4 +1,5 @@
 export namespace initialState {
+    export const activeRound: null;
     export const activeScene: string;
     export { defaultWorldId as activeWorld };
     export const clock: never[];
@@ -28,6 +29,7 @@ export type Player = {
 };
 export type Round = {
     previousRound: string;
+    round: number;
     turns: Array<string>;
 };
 export type Rounds = {
@@ -40,6 +42,7 @@ export type World = {
     facesPerRow: number;
 };
 export type State = {
+    activeRound: Round['round'] | null;
     activeScene: Scene;
     activeWorld: string;
     clock: Array<number>;
@@ -60,6 +63,7 @@ export type State = {
 /**
  * @typedef {object} Round
  * @property {string} Round.previousRound
+ * @property {number} Round.round
  * @property {Array<string>} Round.turns
  */
 /**
@@ -74,6 +78,7 @@ export type State = {
  */
 /**
  * @typedef {object} State
+ * @property {Round['round'] | null} State.activeRound
  * @property {Scene} State.activeScene
  * @property {string} State.activeWorld
  * @property {Array<number>} State.clock

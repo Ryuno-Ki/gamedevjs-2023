@@ -214,12 +214,13 @@ function layoutField (state) {
  * @returns {HTMLDivElement}
  */
 function layoutRound (state) {
-  const { rounds } = state
+  const { activeRound, rounds } = state
+  const round = activeRound !== null ? rounds[activeRound].round : 'Invalid'
   const container = /** @type {HTMLDivElement} */(el(
     'div',
     [],
     {},
-    `Round ${Object.keys(rounds).length + 1}`
+    `Round ${round}`
   ))
 
   return container
