@@ -13,7 +13,17 @@ import { mapTransitionsToLinks } from './utils.js'
  * @returns {HTMLDivElement}
  */
 function buildScene (state) {
-  const container = /** @type {HTMLDivElement} */(el('div', [], {}, '', [['h1', [], {}, 'About Scene']]))
+  const openmoji = ['p', [], {}, '', [
+    ['span', [], {}, 'All emojis designed by '],
+    ['a', [], { href: 'https://openmoji.org/' }, 'OpenMoji'],
+    ['span', [], {}, '– the open-source emoji and icon project. License: '],
+    ['a', [], { href: 'https://creativecommons.org/licenses/by-sa/4.0/#' }, 'CC BY-SA 4.0']
+  ]]
+  const container = /** @type {HTMLDivElement} */(el('div', [], {}, '', [
+    ['h1', [], {}, 'About Scene'],
+    openmoji
+  ]))
+
   const transitions = getTransitionsForSceneFromState(state, 'about')
   const anchors = mapTransitionsToLinks(transitions)
   anchors.forEach((anchor) => container.appendChild(anchor))
