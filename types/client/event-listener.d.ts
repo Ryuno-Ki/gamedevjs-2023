@@ -4,6 +4,12 @@
  */
 export function registerEventListeners(): void;
 /**
+ * Change event handler.
+ *
+ * @param {Event} event
+ */
+export function onChange(event: Event): Promise<void>;
+/**
  * Click event handler.
  *
  * @param {MouseEvent} event

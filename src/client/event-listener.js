@@ -1,3 +1,4 @@
+import { selectEmoji } from './state/actions/select-emoji.js'
 import { setIsBot } from './state/actions/set-is-bot.js'
 import { setNickname } from './state/actions/set-nickname.js'
 import { switchToScene } from './state/actions/switch-to-scene.js'
@@ -9,8 +10,30 @@ import store from './state/store.js'
  * Registers event listeners via delegation.
  */
 export function registerEventListeners () {
+  document.body.addEventListener('change', onChange)
   document.body.addEventListener('click', onClick)
   document.body.addEventListener('input', onInput)
+}
+
+/**
+ * Change event handler.
+ *
+ * @param {Event} event
+ */
+export async function onChange (event) {
+  const { target } = event
+
+  if (!target) {
+    return
+  }
+
+  switch (/** @type {HTMLElement} */(target).nodeName) {
+    case 'SELECT':
+      await handleOnSelectChange(/** @type {HTMLSelectElement} */(target))
+      break
+    default:
+      // Do nothing
+  }
 }
 
 /**
@@ -114,4 +137,15 @@ async function handleLinkClick (anchorElement) {
     const scene = /** @type {Scene} */(href.slice(1))
     await store.dispatch(switchToScene(scene))
   }
+}
+
+/**
+ * Handle select changes to pick an option for this turn.
+ *
+ * @private
+ * @param {HTMLSelectElement} selectElement
+ */
+async function handleOnSelectChange (selectElement) {
+  const { value } = selectElement
+  await store.dispatch(selectEmoji(value))
 }
