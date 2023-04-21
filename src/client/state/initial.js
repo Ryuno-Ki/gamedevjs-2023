@@ -29,6 +29,7 @@ import { scenes } from './fsm/scenes.js'
  * @property {number} World.cubeLength
  * @property {number} World.facesPerColumn
  * @property {number} World.facesPerRow
+ * @property {Array<string>} World.solution
  */
 
 /**
@@ -69,6 +70,7 @@ export const initialState = {
     id: defaultWorldId,
     cubeLength: 30,
     facesPerColumn: 1,
-    facesPerRow: 1
+    facesPerRow: 1,
+    solution: ['2601', '1F32C', '1F31E', '1F327']
   }]
 }

@@ -15,6 +15,7 @@ export namespace initialState {
         cubeLength: number;
         facesPerColumn: number;
         facesPerRow: number;
+        solution: string[];
     }[];
 }
 /**
@@ -40,6 +41,7 @@ export type World = {
     cubeLength: number;
     facesPerColumn: number;
     facesPerRow: number;
+    solution: Array<string>;
 };
 export type State = {
     activeRound: Round['round'] | null;
@@ -75,6 +77,7 @@ export type State = {
  * @property {number} World.cubeLength
  * @property {number} World.facesPerColumn
  * @property {number} World.facesPerRow
+ * @property {Array<string>} World.solution
  */
 /**
  * @typedef {object} State
