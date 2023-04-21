@@ -1,10 +1,12 @@
 import { initialState } from '../initial.js'
 import {
+  SELECT_EMOJI,
   SET_IS_BOT,
   SET_NICKNAME,
   SWITCH_TO_SCENE,
   TICK
 } from '../../../constants.js'
+import { selectEmoji } from './select-emoji.js'
 import { setIsBot } from './set-is-bot.js'
 import { setNickname } from './set-nickname.js'
 import { switchToScene } from './switch-to-scene.js'
@@ -26,6 +28,11 @@ export function reducer (state, action) {
   }
 
   switch (action.type) {
+    case SELECT_EMOJI:
+      return selectEmoji(
+        state,
+        /** @type {import('../actions/select-emoji').Action} */(action).payload
+      )
     case SET_IS_BOT:
       return setIsBot(
         state,
