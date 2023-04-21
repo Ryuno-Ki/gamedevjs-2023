@@ -7,6 +7,7 @@ export namespace initialState {
         isBot: boolean;
         name: string;
     }[];
+    export const rounds: {};
     export { scenes };
     export const worlds: {
         id: string;
@@ -25,6 +26,13 @@ export type Player = {
     isBot: boolean;
     name: string;
 };
+export type Round = {
+    previousRound: string;
+    turns: Array<string>;
+};
+export type Rounds = {
+    [x: string]: Round;
+};
 export type World = {
     id: string;
     cubeLength: number;
@@ -37,8 +45,9 @@ export type State = {
     clock: Array<number>;
     gameStatus: GameStatus;
     players: Array<Player>;
-    worlds: Array<World>;
+    rounds: Rounds;
     scenes: Scenes;
+    worlds: Array<World>;
 };
 /** @typedef {import('../components/scenes/index').Scene} Scene} */
 /** @typedef {import('./fsm/scenes').Scenes} Scenes */
@@ -47,6 +56,14 @@ export type State = {
  * @typedef {object} Player
  * @property {boolean} Player.isBot
  * @property {string} Player.name
+ */
+/**
+ * @typedef {object} Round
+ * @property {string} Round.previousRound
+ * @property {Array<string>} Round.turns
+ */
+/**
+ * @typedef {Object<string, Round>} Rounds
  */
 /**
  * @typedef {object} World
@@ -62,8 +79,9 @@ export type State = {
  * @property {Array<number>} State.clock
  * @property {GameStatus} State.gameStatus
  * @property {Array<Player>} State.players
- * @property {Array<World>} State.worlds
+ * @property {Rounds} State.rounds
  * @property {Scenes} State.scenes
+ * @property {Array<World>} State.worlds
  */
 declare const defaultWorldId: string;
 import { scenes } from './fsm/scenes.js';

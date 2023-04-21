@@ -13,6 +13,16 @@ import { scenes } from './fsm/scenes.js'
  */
 
 /**
+ * @typedef {object} Round
+ * @property {string} Round.previousRound
+ * @property {Array<string>} Round.turns
+ */
+
+/**
+ * @typedef {Object<string, Round>} Rounds
+ */
+
+/**
  * @typedef {object} World
  * @property {string} World.id
  * @property {number} World.cubeLength
@@ -27,8 +37,9 @@ import { scenes } from './fsm/scenes.js'
  * @property {Array<number>} State.clock
  * @property {GameStatus} State.gameStatus
  * @property {Array<Player>} State.players
- * @property {Array<World>} State.worlds
+ * @property {Rounds} State.rounds
  * @property {Scenes} State.scenes
+ * @property {Array<World>} State.worlds
  */
 
 const defaultWorldId = nanoid()
@@ -49,6 +60,7 @@ export const initialState = {
     isBot: false,
     name: ''
   }],
+  rounds: {},
   scenes,
   worlds: [{
     id: defaultWorldId,

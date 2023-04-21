@@ -207,6 +207,25 @@ function layoutField (state) {
 }
 
 /**
+ * Build the DOM to place the round data on the UI.
+ *
+ * @private
+ * @param {State} state
+ * @returns {HTMLDivElement}
+ */
+function layoutRound (state) {
+  const { rounds } = state
+  const container = /** @type {HTMLDivElement} */(el(
+    'div',
+    [],
+    {},
+    `Round ${Object.keys(rounds).length + 1}`
+  ))
+
+  return container
+}
+
+/**
  * Build the DOM to attach to the target element.
  *
  * @private
@@ -215,6 +234,7 @@ function layoutField (state) {
  */
 function buildScene (state) {
   const container = /** @type {HTMLDivElement} */(el('div'))
+  container.appendChild(layoutRound(state))
   container.appendChild(layoutField(state))
 
   const transitions = getTransitionsForSceneFromState(state, 'level')
