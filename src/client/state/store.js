@@ -57,7 +57,7 @@ const store = new Store(reducer)
  */
 function updateDocumentTitle (payload) {
   const { scene } = payload
-  const title = [scene, 'TIME', 'GameDevJS 2023'].join(' | ')
+  const title = [scene, 'Alea Parcae', 'TIME', 'GameDevJS 2023'].join(' | ')
   document.title = title
 }
 

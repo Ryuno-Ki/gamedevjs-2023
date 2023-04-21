@@ -13,7 +13,7 @@ import { mapTransitionsToLinks } from './utils.js'
  * @returns {HTMLDivElement}
  */
 function buildTitleScene (state) {
-  const container = /** @type {HTMLDivElement} */(el('div', [], {}, '', [['h1', [], {}, 'Title Scene']]))
+  const container = /** @type {HTMLDivElement} */(el('div', [], {}, '', [['h1', [], {}, 'Alea Parcae']]))
   const transitions = getTransitionsForSceneFromState(state, 'title')
   const anchors = mapTransitionsToLinks(transitions)
   anchors.forEach((anchor) => container.appendChild(anchor))

@@ -29,6 +29,6 @@ describe('render', () => {
     await render()
 
     // Assert
-    expect(global.document.body.innerHTML).to.contain('Title')
+    expect(global.document.body.innerHTML).to.contain('Alea Parcae')
   })
 })
