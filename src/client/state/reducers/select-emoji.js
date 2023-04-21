@@ -1,17 +1,13 @@
 /** @typedef {import('../initial').Round} Round */
 /** @typedef {import('../initial').State} State */
 /** @typedef {import('../initial').World} World */
-
-/**
- * @typedef {object} payload
- * @property {string} payload.emoji
- */
+/** @typedef {import('../actions/select-emoji').Action} Action */
 
 /**
  * Picks an emoji as turn of a player in a round.
  *
  * @param {State} state
- * @param {payload} payload
+ * @param {Action['payload']} payload
  * @returns {State}
  */
 export function selectEmoji (state, payload) {

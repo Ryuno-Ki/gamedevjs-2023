@@ -1,17 +1,12 @@
+/** @typedef {import('../actions/tick').Action} Action */
 /** @typedef {import('../initial').State} State */
-/**
- * @typedef {object} payload
- * @property {number} payload.time
- */
 /**
  * Adds another UNIX timestamp to state.
  *
  * @param {State} state
- * @param {payload} payload
+ * @param {Action['payload']} payload
  * @returns {State}
  */
-export function tick(state: State, payload: payload): State;
+export function tick(state: State, payload: Action['payload']): State;
+export type Action = import('../actions/tick').Action;
 export type State = import('../initial').State;
-export type payload = {
-    time: number;
-};

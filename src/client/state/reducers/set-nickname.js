@@ -1,29 +1,11 @@
+/** @typedef {import('../actions/set-nickname').Action} Action */
 /** @typedef {import('../store').State} State */
-
-/**
- * @typedef {object} payload
- * @property {number} payload.index
- * @property {string} payload.nickname
- */
-
-/**
- * Sanitise nickname.
- *
- * @private
- * @param {string} unsafeNickname
- * @returns {string}
- */
-function sanitiseNickname (unsafeNickname) {
-  const safeNickname = unsafeNickname
-  // FIXME: Sanitising!
-  return safeNickname
-}
 
 /**
  * Sets the nickname.
  *
  * @param {State} state
- * @param {payload} payload
+ * @param {Action['payload']} payload
  * @returns {State}
  */
 export function setNickname (state, payload) {
@@ -39,4 +21,17 @@ export function setNickname (state, payload) {
   })
 
   return Object.assign({}, state, { players })
+}
+
+/**
+ * Sanitise nickname.
+ *
+ * @private
+ * @param {string} unsafeNickname
+ * @returns {string}
+ */
+function sanitiseNickname (unsafeNickname) {
+  const safeNickname = unsafeNickname
+  // FIXME: Sanitising!
+  return safeNickname
 }
