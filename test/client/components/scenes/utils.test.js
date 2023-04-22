@@ -50,8 +50,9 @@ describe('mapTransitionsToLinks', () => {
     // Assert
     expect(links).to.have.length(transitions.length)
     links.forEach((link) => {
-      expect(link).to.have.tagName('a')
-      expect(link).to.have.attribute('href')
+      const [tagName, , attributes] = link
+      expect(tagName).to.have.equal('a')
+      expect(attributes).to.have.key('href')
     })
   })
 })

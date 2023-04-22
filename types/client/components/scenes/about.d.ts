@@ -1,3 +1,5 @@
+/** @typedef {import('../scenes/index').Scene} Scene */
+/** @typedef {import('../../state/initial').State} State */
 /**
  * Renders the scene for about.
  *

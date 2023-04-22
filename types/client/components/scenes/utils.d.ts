@@ -10,7 +10,7 @@ export function mapDegToRadians(degree: number): number;
  * Turns transitions into anchor elements.
  *
  * @param {Array<Scene>} transitions
- * @returns {Array<HTMLAnchorElement>}
+ * @returns {Array<*>}
  */
-export function mapTransitionsToLinks(transitions: Array<Scene>): Array<HTMLAnchorElement>;
+export function mapTransitionsToLinks(transitions: Array<Scene>): Array<any>;
 export type Scene = import('../scenes/index').Scene;

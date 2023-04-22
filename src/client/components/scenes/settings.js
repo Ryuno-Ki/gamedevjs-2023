@@ -6,21 +6,6 @@ import { mapTransitionsToLinks } from './utils.js'
 /** @typedef {import('../../state/initial').State} State */
 
 /**
- * Build the DOM to attach to the target element.
- *
- * @private
- * @param {State} state
- * @returns {HTMLDivElement}
- */
-function buildScene (state) {
-  const container = /** @type {HTMLDivElement} */(el('div', [], {}, '', [['h1', [], {}, 'Settings Scene']]))
-  const transitions = getTransitionsForSceneFromState(state, 'settings')
-  const anchors = mapTransitionsToLinks(transitions)
-  anchors.forEach((anchor) => container.appendChild(anchor))
-  return container
-}
-
-/**
  * Renders the scene for settings.
  *
  * @param {HTMLElement} targetElement
@@ -39,4 +24,21 @@ export function settingsSceneComponent (targetElement, state) {
   }
 
   return element
+}
+
+/**
+ * Build the DOM to attach to the target element.
+ *
+ * @private
+ * @param {State} state
+ * @returns {HTMLDivElement}
+ */
+function buildScene (state) {
+  const transitions = getTransitionsForSceneFromState(state, 'level')
+  const anchors = mapTransitionsToLinks(transitions)
+
+  return /** @type {HTMLDivElement} */(el('div', [], {}, '', [
+    ['h1', [], {}, 'Settings Scene'],
+    ...anchors
+  ]))
 }

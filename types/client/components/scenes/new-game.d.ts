@@ -1,3 +1,6 @@
+/** @typedef {import('../scenes/index').Scene} Scene */
+/** @typedef {import('../../state/initial').Player} Player */
+/** @typedef {import('../../state/initial').State} State */
 /**
  * Renders the scene for new game.
  *

@@ -9,6 +9,27 @@ import { mapDegToRadians, mapTransitionsToLinks } from './utils.js'
 /** @typedef {import('../../state/initial').World} World */
 
 /**
+ * Renders the scene for level.
+ *
+ * @param {HTMLElement} targetElement
+ * @param {State} state
+ * @returns {HTMLElement}
+ */
+export function levelSceneComponent (targetElement, state) {
+  const element = /** @type {HTMLElement} */(targetElement.cloneNode(true))
+
+  if (state.activeScene !== 'level') {
+    element.innerHTML = ''
+  } else {
+    const child = buildScene(state)
+    // TODO: Think about how to use .replaceWith but keep it idempotent
+    element.innerHTML = child.outerHTML
+  }
+
+  return element
+}
+
+/**
  * Build the DOM to place the players on the UI.
  *
  * @private
@@ -258,33 +279,13 @@ function layoutRound (state) {
  * @returns {HTMLDivElement}
  */
 function buildScene (state) {
-  const container = /** @type {HTMLDivElement} */(el('div'))
-  container.appendChild(layoutRound(state))
-  container.appendChild(layoutField(state))
-
   const transitions = getTransitionsForSceneFromState(state, 'level')
   const anchors = mapTransitionsToLinks(transitions)
-  anchors.forEach((anchor) => container.appendChild(anchor))
+
+  const container = /** @type {HTMLDivElement} */(el('div', [], {}, '', [
+    ...anchors
+  ]))
+  container.appendChild(layoutRound(state))
+  container.appendChild(layoutField(state))
   return container
-}
-
-/**
- * Renders the scene for level.
- *
- * @param {HTMLElement} targetElement
- * @param {State} state
- * @returns {HTMLElement}
- */
-export function levelSceneComponent (targetElement, state) {
-  const element = /** @type {HTMLElement} */(targetElement.cloneNode(true))
-
-  if (state.activeScene !== 'level') {
-    element.innerHTML = ''
-  } else {
-    const child = buildScene(state)
-    // TODO: Think about how to use .replaceWith but keep it idempotent
-    element.innerHTML = child.outerHTML
-  }
-
-  return element
 }

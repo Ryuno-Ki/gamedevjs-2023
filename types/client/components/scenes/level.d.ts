@@ -1,3 +1,6 @@
+/** @typedef {import('../scenes/index').Scene} Scene */
+/** @typedef {import('../../state/initial').State} State */
+/** @typedef {import('../../state/initial').World} World */
 /**
  * Renders the scene for level.
  *
