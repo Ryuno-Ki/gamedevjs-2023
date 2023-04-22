@@ -1,8 +1,7 @@
-import { getTransitionsForSceneFromState } from '../../state/utils.js'
+import { buildAnchors } from '../anchors.js'
 import { el } from '../el.js'
-import { mapTransitionsToLinks } from './utils.js'
+import { buildHeadline } from '../headline.js'
 
-/** @typedef {import('../scenes/index').Scene} Scene */
 /** @typedef {import('../../state/initial').State} State */
 
 /**
@@ -18,7 +17,7 @@ export function titleSceneComponent (targetElement, state) {
   if (state.activeScene !== 'title') {
     element.innerHTML = ''
   } else {
-    const child = buildTitleScene(state)
+    const child = buildScene(state)
     // TODO: Think about how to use .replaceWith but keep it idempotent
     element.innerHTML = child.outerHTML
   }
@@ -33,11 +32,9 @@ export function titleSceneComponent (targetElement, state) {
  * @param {State} state
  * @returns {HTMLDivElement}
  */
-function buildTitleScene (state) {
-  const transitions = getTransitionsForSceneFromState(state, 'title')
-  const anchors = mapTransitionsToLinks(transitions)
+function buildScene (state) {
   return /** @type {HTMLDivElement} */(el('div', [], {}, '', [
-    ['h1', [], {}, 'Alea Parcae'],
-    ...anchors
+    buildHeadline('Alea Parcae'),
+    buildAnchors(state, 'title')
   ]))
 }

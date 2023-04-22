@@ -1,8 +1,7 @@
-import { getTransitionsForSceneFromState } from '../../state/utils.js'
+import { buildAnchors } from '../anchors.js'
 import { el } from '../el.js'
-import { mapTransitionsToLinks } from './utils.js'
+import { buildHeadline } from '../headline.js'
 
-/** @typedef {import('../scenes/index').Scene} Scene */
 /** @typedef {import('../../state/initial').Player} Player */
 /** @typedef {import('../../state/initial').State} State */
 
@@ -35,15 +34,10 @@ export function newGameSceneComponent (targetElement, state) {
  * @returns {HTMLDivElement}
  */
 function buildScene (state) {
-  const headline = ['h1', [], {}, 'New Game Scene']
-  const transitions = getTransitionsForSceneFromState(state, 'level')
-  const anchors = mapTransitionsToLinks(transitions)
-  const fieldsets = mapPlayersToFieldsets(state.players)
-
   return /** @type {HTMLDivElement} */(el('div', [], {}, '', [
-    headline,
-    ['div', ['actions'], {}, '', anchors],
-    ...fieldsets
+    buildHeadline('New Game'),
+    buildAnchors(state, 'level'),
+    ...mapPlayersToFieldsets(state.players)
   ]))
 }
 

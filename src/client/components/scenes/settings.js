@@ -1,8 +1,7 @@
-import { getTransitionsForSceneFromState } from '../../state/utils.js'
+import { buildAnchors } from '../anchors.js'
 import { el } from '../el.js'
-import { mapTransitionsToLinks } from './utils.js'
+import { buildHeadline } from '../headline.js'
 
-/** @typedef {import('../scenes/index').Scene} Scene */
 /** @typedef {import('../../state/initial').State} State */
 
 /**
@@ -34,11 +33,8 @@ export function settingsSceneComponent (targetElement, state) {
  * @returns {HTMLDivElement}
  */
 function buildScene (state) {
-  const transitions = getTransitionsForSceneFromState(state, 'level')
-  const anchors = mapTransitionsToLinks(transitions)
-
   return /** @type {HTMLDivElement} */(el('div', [], {}, '', [
-    ['h1', [], {}, 'Settings Scene'],
-    ...anchors
+    buildHeadline('Settings'),
+    buildAnchors(state, 'settings')
   ]))
 }

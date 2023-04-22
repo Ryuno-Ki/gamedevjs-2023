@@ -1,8 +1,7 @@
-import { getTransitionsForSceneFromState } from '../../state/utils.js'
+import { buildAnchors } from '../anchors.js'
 import { el } from '../el.js'
-import { mapTransitionsToLinks } from './utils.js'
+import { buildHeadline } from '../headline.js'
 
-/** @typedef {import('../scenes/index').Scene} Scene */
 /** @typedef {import('../../state/initial').State} State */
 
 /**
@@ -34,21 +33,35 @@ export function aboutSceneComponent (targetElement, state) {
  * @returns {HTMLDivElement}
  */
 function buildScene (state) {
-  const license = ['p', [], {}, 'This game is licensed under AGPL v3 or later.']
-  const openmoji = ['p', [], {}, '', [
+  return /** @type {HTMLDivElement} */(el('div', [], {}, '', [
+    buildHeadline('About'),
+    buildLicense(),
+    buildOpenmoji(),
+    buildAnchors(state, 'about')
+  ]))
+}
+
+/**
+ * Build the DOM to display the license notice.
+ *
+ * @private
+ * @returns {Array<*>}
+ */
+function buildLicense () {
+  return ['p', [], {}, 'This game is licensed under AGPL v3 or later.']
+}
+
+/**
+ * Build the DOM to display the Openmoji license notice.
+ *
+ * @private
+ * @returns {Array<*>}
+ */
+function buildOpenmoji () {
+  return ['p', [], {}, '', [
     ['span', [], {}, 'All emojis designed by '],
     ['a', [], { href: 'https://openmoji.org/' }, 'OpenMoji'],
     ['span', [], {}, '– the open-source emoji and icon project. License: '],
     ['a', [], { href: 'https://creativecommons.org/licenses/by-sa/4.0/#' }, 'CC BY-SA 4.0']
   ]]
-
-  const transitions = getTransitionsForSceneFromState(state, 'about')
-  const anchors = mapTransitionsToLinks(transitions)
-
-  return /** @type {HTMLDivElement} */(el('div', [], {}, '', [
-    ['h1', [], {}, 'About'],
-    license,
-    openmoji,
-    ...anchors
-  ]))
 }
