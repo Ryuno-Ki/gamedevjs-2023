@@ -1,5 +1,7 @@
 /** CSS selector to find the part of a HTML document for the game. */
 export const APP_SELECTOR = '#app'
+/** Action type for checking the win condition. */
+export const CHECK_FOR_WIN = 'CHECK_FOR_WIN'
 /** Action type for selecting an emoji. */
 export const SELECT_EMOJI = 'SELECT_EMOJI'
 /** Action type to toggle the type of player. */
