@@ -1,4 +1,5 @@
 import {
+  CHECK_FOR_WIN,
   SELECT_EMOJI,
   SET_IS_BOT,
   SET_NICKNAME,
@@ -7,6 +8,7 @@ import {
 } from '../../../constants.js'
 import { getLogger } from '../../../logger.js'
 import { initialState } from '../initial.js'
+import { checkForWin } from './check-for-win.js'
 import { selectEmoji } from './select-emoji.js'
 import { setIsBot } from './set-is-bot.js'
 import { setNickname } from './set-nickname.js'
@@ -31,6 +33,11 @@ export function reducer (state, action) {
   }
 
   switch (action.type) {
+    case CHECK_FOR_WIN:
+      return checkForWin(
+        state,
+        /** @type {import('../actions/check-for-win').Action} */(action).payload
+      )
     case SELECT_EMOJI:
       return selectEmoji(
         state,

@@ -26,57 +26,10 @@ export function selectEmoji (state, payload) {
   }
 
   let activeScene = state.activeScene
-  activeScene = checkForWin(state, rounds)
   activeScene = checkForGameover(state, rounds)
   // TODO: Increase round once turns.length === players.length
 
   return Object.assign({}, state, { activeScene, rounds })
-}
-
-/**
- * Checks whether conditions for a win are met.
- *
- * @private
- * @param {State} state
- * @param {State['rounds']} rounds
- * @returns {State['activeScene']}
- */
-function checkForWin (state, rounds) {
-  let activeScene = state.activeScene
-  const { activeRound, activeWorld, worlds } = state
-  const world = /** @type {Array<World>} */(worlds).find((world) => world.id === activeWorld) || null
-
-  if (!world) {
-    return activeScene
-  }
-
-  if (!activeRound) {
-    return activeScene
-  }
-
-  const round = rounds[activeRound]
-  if (!round) {
-    return activeScene
-  }
-
-  const vote = evaluateTurn(world.solution, round.turns)
-    // voting is an array of emoji and numberOfVotes
-    // since I know that there will be three players, a majority is 2
-    // and univocally voting is 3. Both are > 1.
-    .filter((voting) => /** @type {number!} */(voting[1]) > 1)
-    // TODO: I want to return the emoji with the highest count here
-    // .reduce((candidate, voting) => /** @type {string!} */(voting[0]))
-
-  if (vote.length === 0) {
-    return activeScene
-  }
-
-  // TODO: Evaluate over four rounds, because solution.length === 4
-  if (world.solution.includes(/** @type {string} */(vote[0][0]))) {
-    activeScene = 'win'
-  }
-
-  return activeScene
 }
 
 /**

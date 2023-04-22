@@ -1,3 +1,4 @@
+import { checkForWin } from './state/actions/check-for-win.js'
 import { selectEmoji } from './state/actions/select-emoji.js'
 import { setIsBot } from './state/actions/set-is-bot.js'
 import { setNickname } from './state/actions/set-nickname.js'
@@ -148,4 +149,5 @@ async function handleLinkClick (anchorElement) {
 async function handleOnSelectChange (selectElement) {
   const { value } = selectElement
   await store.dispatch(selectEmoji(value))
+  await store.dispatch(checkForWin())
 }
