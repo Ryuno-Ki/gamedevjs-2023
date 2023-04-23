@@ -1,6 +1,9 @@
 import { expect } from 'chai'
 
 import {
+  CHECK_FOR_GAMEOVER,
+  CHECK_FOR_WIN,
+  SELECT_EMOJI,
   SET_IS_BOT,
   SET_NICKNAME,
   SWITCH_TO_SCENE,
@@ -35,6 +38,48 @@ describe('reducer', () => {
 
       // Assert
       expect(newState).to.equal(state)
+    })
+  })
+
+  describe('when invoked with CHECK_FOR_GAMEOVER action', () => {
+    it('should update the state', () => {
+      // Arrange
+      const state = Object.assign({}, initialState)
+      const action = { type: CHECK_FOR_GAMEOVER, payload: {} }
+
+      // Act
+      const newState = reducer(state, action)
+
+      // Assert
+      expect(newState).to.not.equal(state)
+    })
+  })
+
+  describe('when invoked with CHECK_FOR_WIN action', () => {
+    it('should update the state', () => {
+      // Arrange
+      const state = Object.assign({}, initialState)
+      const action = { type: CHECK_FOR_WIN, payload: {} }
+
+      // Act
+      const newState = reducer(state, action)
+
+      // Assert
+      expect(newState).to.not.equal(state)
+    })
+  })
+
+  describe('when invoked with SELECT_EMOJI action', () => {
+    it('should update the state', () => {
+      // Arrange
+      const state = Object.assign({}, initialState)
+      const action = { type: SELECT_EMOJI, payload: { emoji: '1234' } }
+
+      // Act
+      const newState = reducer(state, action)
+
+      // Assert
+      expect(newState).to.not.equal(state)
     })
   })
 

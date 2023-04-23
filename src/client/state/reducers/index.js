@@ -1,4 +1,5 @@
 import {
+  CHECK_FOR_GAMEOVER,
   CHECK_FOR_WIN,
   SELECT_EMOJI,
   SET_IS_BOT,
@@ -8,6 +9,7 @@ import {
 } from '../../../constants.js'
 import { getLogger } from '../../../logger.js'
 import { initialState } from '../initial.js'
+import { checkForGameover } from './check-for-gameover.js'
 import { checkForWin } from './check-for-win.js'
 import { selectEmoji } from './select-emoji.js'
 import { setIsBot } from './set-is-bot.js'
@@ -33,6 +35,11 @@ export function reducer (state, action) {
   }
 
   switch (action.type) {
+    case CHECK_FOR_GAMEOVER:
+      return checkForGameover(
+        state,
+        /** @type {import('../actions/check-for-gameover').Action} */(action).payload
+      )
     case CHECK_FOR_WIN:
       return checkForWin(
         state,
