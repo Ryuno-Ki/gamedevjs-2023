@@ -12,7 +12,7 @@ import { mapTransitionsToLinks } from './scenes/utils.js'
  * @returns {Array<*>}
  */
 export function buildAnchors (state, scene) {
-  const transitions = getTransitionsForSceneFromState(state, 'about')
+  const transitions = getTransitionsForSceneFromState(state, scene)
   const anchors = ['div', ['actions'], {}, '', mapTransitionsToLinks(transitions)]
   return anchors
 }
