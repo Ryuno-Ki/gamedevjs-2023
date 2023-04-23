@@ -10,7 +10,9 @@ export const SELECT_EMOJI: "SELECT_EMOJI";
 export const SET_IS_BOT: "SET_IS_BOT";
 /** Action type to update the nickname of a player. */
 export const SET_NICKNAME: "SET_NICKNAME";
-/** Action type to switch to anohter scene. */
+/** Action type to switch to another theme. */
+export const SWITCH_THEME: "SWITCH_THEME";
+/** Action type to switch to another scene. */
 export const SWITCH_TO_SCENE: "SWITCH_TO_SCENE";
 /** Action type to update the game clock. */
 export const TICK: "TICK";
