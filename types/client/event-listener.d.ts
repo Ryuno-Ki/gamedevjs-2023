@@ -1,4 +1,5 @@
 /** @typedef {import('./components/scenes/index').Scene} Scene */
+/** @typedef {import('./state/initial').Theme} Theme */
 /**
  * Registers event listeners via delegation.
  */
@@ -22,3 +23,4 @@ export function onClick(event: MouseEvent): Promise<void>;
  */
 export function onInput(event: Event): Promise<void>;
 export type Scene = import('./components/scenes/index').Scene;
+export type Theme = import('./state/initial').Theme;

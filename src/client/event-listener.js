@@ -3,10 +3,12 @@ import { checkForWin } from './state/actions/check-for-win.js'
 import { selectEmoji } from './state/actions/select-emoji.js'
 import { setIsBot } from './state/actions/set-is-bot.js'
 import { setNickname } from './state/actions/set-nickname.js'
+import { switchTheme } from './state/actions/switch-theme.js'
 import { switchToScene } from './state/actions/switch-to-scene.js'
 import store from './state/store.js'
 
 /** @typedef {import('./components/scenes/index').Scene} Scene */
+/** @typedef {import('./state/initial').Theme} Theme */
 
 /**
  * Registers event listeners via delegation.
@@ -148,8 +150,12 @@ async function handleLinkClick (anchorElement) {
  * @param {HTMLSelectElement} selectElement
  */
 async function handleOnSelectChange (selectElement) {
-  const { value } = selectElement
-  await store.dispatch(selectEmoji(value))
-  await store.dispatch(checkForWin())
-  await store.dispatch(checkForGameover())
+  const { id, value } = selectElement
+  if (id === 'settings-theme') {
+    await store.dispatch(switchTheme(/** @type {Theme} */(value)))
+  } else {
+    await store.dispatch(selectEmoji(value))
+    await store.dispatch(checkForWin())
+    await store.dispatch(checkForGameover())
+  }
 }
