@@ -5,6 +5,7 @@ import { scenes } from './fsm/scenes.js'
 /** @typedef {import('../components/scenes/index').Scene} Scene} */
 /** @typedef {import('./fsm/scenes').Scenes} Scenes */
 /** @typedef {'UNINITIALISED' | 'INITIALISED' | 'RUNNING'} GameStatus */
+/** @typedef {'system' | 'dark' | 'light'} Theme */
 
 /**
  * @typedef {object} Player
@@ -42,6 +43,7 @@ import { scenes } from './fsm/scenes.js'
  * @property {Array<Player>} State.players
  * @property {Rounds} State.rounds
  * @property {Scenes} State.scenes
+ * @property {Theme} State.theme
  * @property {Array<World>} State.worlds
  */
 
@@ -66,6 +68,7 @@ export const initialState = {
   }],
   rounds: {},
   scenes,
+  theme: 'system',
   worlds: [{
     id: defaultWorldId,
     cubeLength: 30,

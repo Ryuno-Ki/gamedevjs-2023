@@ -10,6 +10,7 @@ export namespace initialState {
     }[];
     export const rounds: {};
     export { scenes };
+    export const theme: string;
     export const worlds: {
         id: string;
         cubeLength: number;
@@ -24,6 +25,7 @@ export namespace initialState {
 export type Scene = import('../components/scenes/index').Scene;
 export type Scenes = import('./fsm/scenes').Scenes;
 export type GameStatus = 'UNINITIALISED' | 'INITIALISED' | 'RUNNING';
+export type Theme = 'system' | 'dark' | 'light';
 export type Player = {
     isBot: boolean;
     name: string;
@@ -52,11 +54,13 @@ export type State = {
     players: Array<Player>;
     rounds: Rounds;
     scenes: Scenes;
+    theme: Theme;
     worlds: Array<World>;
 };
 /** @typedef {import('../components/scenes/index').Scene} Scene} */
 /** @typedef {import('./fsm/scenes').Scenes} Scenes */
 /** @typedef {'UNINITIALISED' | 'INITIALISED' | 'RUNNING'} GameStatus */
+/** @typedef {'system' | 'dark' | 'light'} Theme */
 /**
  * @typedef {object} Player
  * @property {boolean} Player.isBot
@@ -89,6 +93,7 @@ export type State = {
  * @property {Array<Player>} State.players
  * @property {Rounds} State.rounds
  * @property {Scenes} State.scenes
+ * @property {Theme} State.theme
  * @property {Array<World>} State.worlds
  */
 declare const defaultWorldId: string;
