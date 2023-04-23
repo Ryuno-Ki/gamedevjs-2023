@@ -15,6 +15,7 @@
     "lint:src": "standard src --global requestAnimationFrame",
     "lint:test": "standard test --env mocha",
     "postbuild": "yarn copy",
+    "postbuild:dev": "yarn copy",
     "postinstall": "husky install",
     "postpack": "pinst --enable",
     "prebuild": "yarn copy:emoji && yarn lint && yarn types && yarn test:ci && yarn clean",
