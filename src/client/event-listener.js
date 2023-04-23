@@ -1,3 +1,4 @@
+import { checkForGameover } from './state/actions/check-for-gameover.js'
 import { checkForWin } from './state/actions/check-for-win.js'
 import { selectEmoji } from './state/actions/select-emoji.js'
 import { setIsBot } from './state/actions/set-is-bot.js'
@@ -150,4 +151,5 @@ async function handleOnSelectChange (selectElement) {
   const { value } = selectElement
   await store.dispatch(selectEmoji(value))
   await store.dispatch(checkForWin())
+  await store.dispatch(checkForGameover())
 }
