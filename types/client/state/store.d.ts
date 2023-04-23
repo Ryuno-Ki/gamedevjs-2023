@@ -1,5 +1,6 @@
 /** @typedef {import('./../components/scenes/index').Scene} Scene */
 /** @typedef {import('./actions/index').Action} Action */
+/** @typedef {import('./actions/switch-theme').Action} SwitchThemeAction */
 /** @typedef {import('./actions/switch-to-scene').Action} SwitchToSceneAction */
 /** @typedef {import('./initial').State} State */
 /**
@@ -29,6 +30,7 @@ export class Store {
 export default store;
 export type Scene = import('./../components/scenes/index').Scene;
 export type Action = import('./actions/index').Action;
+export type SwitchThemeAction = import('./actions/switch-theme').Action;
 export type SwitchToSceneAction = import('./actions/switch-to-scene').Action;
 export type State = import('./initial').State;
 declare const store: Store;
