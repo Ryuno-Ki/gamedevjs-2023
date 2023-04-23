@@ -31,6 +31,20 @@ describe('settingsSceneComponent', () => {
       expect(component.innerHTML).not.to.be.empty
     })
 
+    it('should render the theme switcher', () => {
+      // Arrange
+      const state = Object.assign({}, initialState, { activeScene: 'settings' })
+
+      // Act
+      const component = settingsSceneComponent(document.body, state)
+
+      // Assert
+      expect(component).to.have.descendant('fieldset')
+      expect(component).to.have.descendant('select')
+      expect(component).to.have.descendants('option').and.have.length(3)
+      expect(component).to.descendant('option[value="system"]').and.have.attribute('selected', 'selected')
+    })
+
     it('should render links to transition to other scenes', () => {
       // Arrange
       const state = Object.assign({}, initialState, { activeScene: 'settings' })
