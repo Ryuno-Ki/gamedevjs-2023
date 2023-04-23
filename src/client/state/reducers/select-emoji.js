@@ -1,3 +1,5 @@
+import { nanoid } from 'nanoid'
+
 /** @typedef {import('../initial').State} State */
 /** @typedef {import('../initial').World} World */
 /** @typedef {import('../actions/select-emoji').Action} Action */
@@ -13,7 +15,9 @@ export function selectEmoji (state, payload) {
   const { activeRound, activeWorld, worlds } = state
   const world = /** @type {Array<World>} */(worlds).find((world) => world.id === activeWorld) || null
 
+  let newId = activeRound
   let rounds = state.rounds
+
   if (world && activeRound) {
     rounds = {
       ...state.rounds,
@@ -22,9 +26,18 @@ export function selectEmoji (state, payload) {
         turns: state.rounds[activeRound].turns.concat([payload.emoji])
       }
     }
+
+    const currentRound = rounds[activeRound]
+    const numberOfPlayers = state.players.length
+    if (currentRound.turns.length === numberOfPlayers) {
+      newId = nanoid()
+      rounds[newId] = {
+        previousRound: activeRound,
+        round: 1 + currentRound.round,
+        turns: []
+      }
+    }
   }
 
-  // TODO: Increase round once turns.length === players.length
-
-  return Object.assign({}, state, { rounds })
+  return Object.assign({}, state, { activeRound: newId, rounds })
 }
