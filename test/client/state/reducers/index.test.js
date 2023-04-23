@@ -6,6 +6,7 @@ import {
   SELECT_EMOJI,
   SET_IS_BOT,
   SET_NICKNAME,
+  SWITCH_THEME,
   SWITCH_TO_SCENE,
   TICK
 } from '../../../../src/constants.js'
@@ -102,6 +103,20 @@ describe('reducer', () => {
       // Arrange
       const state = Object.assign({}, initialState)
       const action = { type: SET_NICKNAME, payload: { index: 2, nickname: 'Mega' } }
+
+      // Act
+      const newState = reducer(state, action)
+
+      // Assert
+      expect(newState).to.not.equal(state)
+    })
+  })
+
+  describe('when invoked with SWITCH_THEME action', () => {
+    it('should update the state', () => {
+      // Arrange
+      const state = Object.assign({}, initialState)
+      const action = { type: SWITCH_THEME, payload: { theme: 'light' } }
 
       // Act
       const newState = reducer(state, action)

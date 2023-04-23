@@ -4,6 +4,7 @@ import {
   SELECT_EMOJI,
   SET_IS_BOT,
   SET_NICKNAME,
+  SWITCH_THEME,
   SWITCH_TO_SCENE,
   TICK
 } from '../../../constants.js'
@@ -14,6 +15,7 @@ import { checkForWin } from './check-for-win.js'
 import { selectEmoji } from './select-emoji.js'
 import { setIsBot } from './set-is-bot.js'
 import { setNickname } from './set-nickname.js'
+import { switchTheme } from './switch-theme.js'
 import { switchToScene } from './switch-to-scene.js'
 import { tick } from './tick.js'
 
@@ -59,6 +61,11 @@ export function reducer (state, action) {
       return setNickname(
         state,
         /** @type {import('../actions/set-nickname').Action} */(action).payload
+      )
+    case SWITCH_THEME:
+      return switchTheme(
+        state,
+        /** @type {import('../actions/switch-theme').Action} */(action).payload
       )
     case SWITCH_TO_SCENE:
       return switchToScene(
