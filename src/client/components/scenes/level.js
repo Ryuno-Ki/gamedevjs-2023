@@ -1,5 +1,6 @@
 import { openmojis } from '../../../vendor/openmoji.js'
 import { getTransitionsForSceneFromState } from '../../state/utils.js'
+import { buildRound } from '../round.js'
 import { el } from '../el.js'
 import { svg } from '../svg.js'
 import { mapDegToRadians, mapTransitionsToLinks } from './utils.js'
@@ -228,50 +229,6 @@ function layoutField (state) {
 }
 
 /**
- * Build the DOM to place the round data on the UI.
- *
- * @private
- * @param {State} state
- * @returns {HTMLDivElement}
- */
-function layoutRound (state) {
-  const { activeRound, activeWorld, rounds, worlds } = state
-  const world = worlds.find((world) => world.id === activeWorld) || null
-
-  const round = activeRound !== null ? rounds[activeRound] : null
-
-  /** @type {Array<string>} */
-  const options = world !== null
-    ? /** @type {Array<string>} */([]).concat(world.solution)
-    : /** @type {Array<string>} */([])
-  options.sort()
-
-  const roundText = round !== null ? `Round ${round.round}` : 'Invalid round'
-  const turnText = round !== null ? `Turn ${round.turns.join(', ')}` : 'No turns'
-  const children = [
-    /** @type {*} */(['option', [], { checked: 'checked', value: '' }, 'Pick'])
-  ].concat(
-    options.map((option) => {
-      const emojis = openmojis.find((emoji) => emoji.hexcode === option)
-      const display = emojis ? emojis.emoji : 'Invalid'
-      return ['option', [], { value: option }, display]
-    })
-  )
-
-  const container = /** @type {HTMLDivElement} */(el(
-    'div',
-    [],
-    {},
-    [roundText, turnText].join(' / '),
-    [
-      ['select', [], {}, '', children]
-    ]
-  ))
-
-  return container
-}
-
-/**
  * Build the DOM to attach to the target element.
  *
  * @private
@@ -283,9 +240,9 @@ function buildScene (state) {
   const anchors = mapTransitionsToLinks(transitions)
 
   const container = /** @type {HTMLDivElement} */(el('div', [], {}, '', [
-    ...anchors
+    ...anchors,
+    buildRound(state)
   ]))
-  container.appendChild(layoutRound(state))
   container.appendChild(layoutField(state))
   return container
 }
