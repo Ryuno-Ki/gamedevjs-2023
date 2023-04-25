@@ -10,13 +10,18 @@ import { openmojis } from '../../vendor/openmoji.js'
  * @returns {Array<*>}
  */
 export function buildPlayer (player, index) {
+  const humanEmojiData = openmojis.find((emoji) => emoji.hexcode === '1F9D2')
+  const humanEmoji = humanEmojiData ? humanEmojiData.emoji : ''
   const robotEmojiData = openmojis.find((emoji) => emoji.hexcode === '1F916')
   const robotEmoji = robotEmojiData ? robotEmojiData.emoji : ''
+
+  const emoji = player.isBot ? robotEmoji : humanEmoji
+
   const x = index % 2 ? 70 : 0
   const y = index > 1 ? 70 : 0
 
   return ['text', ['player'], { 'data-index': index, x, y }, '', [
-    ['tspan', ['avatar'], { dx: 0, dy: 10 }, robotEmoji],
+    ['tspan', ['avatar'], { dx: 0, dy: 10 }, emoji],
     ['tspan', ['nickname'], { dx: -10, dy: 10 }, player.name]
   ]]
 }
