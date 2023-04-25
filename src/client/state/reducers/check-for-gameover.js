@@ -11,7 +11,7 @@
  */
 export function checkForGameover (state, payload) {
   let activeScene = state.activeScene
-  const { activeRound, activeWorld, rounds, worlds } = state
+  const { activeRound, activeWorld, players, rounds, worlds } = state
   if (!activeRound) {
     return Object.assign({}, state, { activeScene })
   }
@@ -26,7 +26,11 @@ export function checkForGameover (state, payload) {
     return Object.assign({}, state, { activeScene })
   }
 
-  if (round.round !== world.solution.length) {
+  if (round.round < world.solution.length) {
+    return Object.assign({}, state, { activeScene })
+  }
+
+  if (round.turns.length < players.length) {
     return Object.assign({}, state, { activeScene })
   }
 

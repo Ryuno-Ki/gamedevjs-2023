@@ -93,8 +93,23 @@ describe('checkForGameover', () => {
             activeScene,
             activeWorld,
             rounds: {
-              sonic: {
+              amy: {
                 previousRound: null,
+                round: 1,
+                turns: []
+              },
+              knuckles: {
+                previousRound: 'amy',
+                round: 2,
+                turns: []
+              },
+              tails: {
+                previousRound: 'knuckles',
+                round: 3,
+                turns: []
+              },
+              sonic: {
+                previousRound: 'tails',
                 round: 4,
                 turns: []
               }
