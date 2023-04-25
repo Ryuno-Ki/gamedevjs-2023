@@ -29,6 +29,7 @@ export function selectEmoji (state, payload) {
 
     const currentRound = rounds[activeRound]
     const numberOfPlayers = state.players.length
+
     if (currentRound.turns.length === numberOfPlayers) {
       newId = nanoid()
       rounds[newId] = {

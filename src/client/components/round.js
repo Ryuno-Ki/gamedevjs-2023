@@ -9,10 +9,10 @@ import { openmojis } from '../../vendor/openmoji.js'
  * @returns {Array<*>}
  */
 export function buildRound (state) {
-  const roundText = buildRoundText(state)
-  const select = buildSelect(state)
-
-  return ['div', [], {}, roundText, [select]]
+  return ['div', [], {}, '', [
+    buildRoundText(state),
+    buildSelect(state)
+  ]]
 }
 
 /**
@@ -20,15 +20,26 @@ export function buildRound (state) {
  *
  * @private
  * @param {State} state
- * @returns {string}
+ * @returns {Array<*>}
  */
 function buildRoundText (state) {
-  const { activeRound, rounds } = state
+  const { activeRound, players, rounds } = state
   const round = activeRound !== null ? rounds[activeRound] : null
 
-  const roundText = round !== null ? `Round ${round.round}` : 'Invalid round'
-  const turnText = round !== null ? `Turn ${round.turns.join(', ')}` : 'No turns'
-  return [roundText, turnText].join(' / ')
+  let playerText = 'Invalid player'
+  let roundText = 'Invalid round'
+
+  if (round !== null) {
+    const index = round.turns.length
+    roundText = `Round ${round.round}`
+    playerText = `Player ${players[index].name}`
+  }
+
+  return ['span', [], {}, '', [
+    ['span', [], {}, roundText],
+    ['span', [], {}, ' / '],
+    ['span', [], {}, playerText]
+  ]]
 }
 
 /**

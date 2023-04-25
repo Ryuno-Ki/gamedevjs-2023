@@ -42,9 +42,10 @@ describe('buildRound', () => {
     // eslint-disable-next-line no-unused-expressions
     expect(classList).to.be.empty
     expect(attributes).to.not.have.any.keys('')
-    expect(text).to.contain('Round')
-    expect(text).to.contain('Turn')
-    expect(children).to.be.an('Array').and.have.length(1)
+    // Standard is tripped up by Chai here
+    // eslint-disable-next-line no-unused-expressions
+    expect(text).to.be.empty
+    expect(children).to.be.an('Array').and.have.length(2)
   })
 
   it("should contain options to choose from on one's turn", () => {
@@ -57,7 +58,8 @@ describe('buildRound', () => {
 
     // Act
     const round = buildRound(state)
-    const [select] = round[4]
+    // eslint-disable-next-line no-unused-vars
+    const [roundText, select] = round[4]
     const [name, classList, attributes, text, children] = select
 
     // Assert
