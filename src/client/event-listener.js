@@ -51,11 +51,14 @@ export async function onClick (event) {
     return
   }
 
+  const href = /** @type {HTMLElement} */(target).getAttribute('href')
+
   switch (/** @type {HTMLElement} */(target).nodeName) {
     case 'A':
-      // TODO: Remove preventDefault once I figured out how to test it
-      event.preventDefault()
-      await handleLinkClick(/** @type {HTMLAnchorElement} */(target))
+      if (href && href.startsWith('#')) {
+        event.preventDefault()
+        await handleLinkClick(href)
+      }
       break
     default:
       // Do nothing
@@ -133,14 +136,11 @@ async function handleNickname (textInputElement) {
  * Handle link clicks by transition to a new scene
  *
  * @private
- * @param {HTMLAnchorElement} anchorElement
+ * @param {string} link
  */
-async function handleLinkClick (anchorElement) {
-  const href = anchorElement.getAttribute('href')
-  if (href) {
-    const scene = /** @type {Scene} */(href.slice(1))
-    await store.dispatch(switchToScene(scene))
-  }
+async function handleLinkClick (link) {
+  const scene = /** @type {Scene} */(link.slice(1))
+  await store.dispatch(switchToScene(scene))
 }
 
 /**
