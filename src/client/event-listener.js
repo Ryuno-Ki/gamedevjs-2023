@@ -127,9 +127,11 @@ async function handleIsBot (radioInputElement) {
  * @param {HTMLInputElement} textInputElement
  */
 async function handleNickname (textInputElement) {
-  const index = parseInt(textInputElement.dataset.index || '-1', 10) || -1
+  const index = parseInt(textInputElement.dataset.index || '-1', 10)
   const nickname = textInputElement.value
-  await store.dispatch(setNickname(index, nickname))
+  await store.dispatch(
+    setNickname(Number.isNaN(index) ? -1 : index, nickname)
+  )
 }
 
 /**
