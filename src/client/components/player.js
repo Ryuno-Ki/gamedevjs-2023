@@ -16,7 +16,7 @@ export function buildPlayer (player, index) {
   const y = index > 1 ? 70 : 0
 
   return ['text', ['player'], { 'data-index': index, x, y }, '', [
-    ['tspan', ['avatar'], { dx: 10, dy: 10 }, robotEmoji],
-    ['tspan', ['nickname'], { dx: 5, dy: 20 }, player.name]
+    ['tspan', ['avatar'], { dx: 0, dy: 10 }, robotEmoji],
+    ['tspan', ['nickname'], { dx: -10, dy: 10 }, player.name]
   ]]
 }

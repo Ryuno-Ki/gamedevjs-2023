@@ -44,6 +44,7 @@ function buildChildren (state) {
   }
 
   return [
+    ['style', [], {}, '.player { font-size: 0.5rem; }'],
     buildPlayers(state),
     buildLeftFields(world),
     buildRightFields(world),
