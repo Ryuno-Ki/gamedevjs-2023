@@ -36,8 +36,8 @@ export function newGameSceneComponent (targetElement, state) {
 function buildScene (state) {
   return /** @type {HTMLDivElement} */(el('div', [], {}, '', [
     buildHeadline('New Game'),
-    buildAnchors(state, 'level'),
-    ...mapPlayersToFieldsets(state.players)
+    ...mapPlayersToFieldsets(state.players),
+    buildAnchors(state, 'new-game')
   ]))
 }
 
