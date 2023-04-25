@@ -10,6 +10,20 @@ import { buildFace } from './face.js'
  * @returns {Array<*>}
  */
 export function buildRightFields (world) {
+  const points = computeRightFieldPoints(world)
+
+  return ['g', ['right', 'faces'], {}, '',
+    points.map((point) => buildFace(point, 'right'))
+  ]
+}
+
+/**
+ * Compute the points for the right field faces.
+ *
+ * @param {World} world
+ * @returns {Array<Array<Array<number>>>}
+ */
+export function computeRightFieldPoints (world) {
   const { cubeLength, facesPerColumn, facesPerRow } = world
   const rowHeight = cubeLength / facesPerRow
   const columnWidth = cubeLength / facesPerColumn
@@ -33,7 +47,5 @@ export function buildRightFields (world) {
     }
   }
 
-  return ['g', ['right', 'faces'], {}, '',
-    points.map((point) => buildFace(point, 'right'))
-  ]
+  return points
 }
