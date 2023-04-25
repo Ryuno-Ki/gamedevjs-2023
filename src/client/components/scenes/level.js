@@ -1,4 +1,3 @@
-import { buildAnchors } from '../anchors.js'
 import { buildField } from '../field.js'
 import { buildRound } from '../round.js'
 import { el } from '../el.js'
@@ -37,7 +36,6 @@ export function levelSceneComponent (targetElement, state) {
  */
 function buildScene (state) {
   const container = /** @type {HTMLDivElement} */(el('div', [], {}, '', [
-    buildAnchors(state, 'level'),
     buildRound(state)
   ]))
   container.appendChild(buildField(state))

@@ -110,17 +110,6 @@ describe('levelSceneComponent', () => {
         expect(component).to.have.descendant(`polygon.${face}`).and.have.attribute('points').match(/^[^-]+$/)
       })
     })
-
-    it('should render links to transition to other scenes', () => {
-      // Arrange
-      const state = Object.assign({}, initialState, { activeScene: 'level' })
-
-      // Act
-      const component = levelSceneComponent(document.body, state)
-
-      // Assert
-      expect(component).to.contain('a')
-    })
   })
 
   describe('when level scene is not active', () => {
