@@ -1,3 +1,5 @@
+import { findTurnsPerRound } from '../utils.js'
+
 /** @typedef {import('../actions/check-for-gameover').Action} Action */
 /** @typedef {import('../initial').State} State */
 /** @typedef {import('../initial').World} World */
@@ -42,38 +44,6 @@ export function checkForGameover (state, payload) {
   }
 
   return Object.assign({}, state, { activeScene })
-}
-
-/**
- * Traverses the rounds of state to find all turns in them.
- *
- * @private
- * @param {State} state
- * @param {State['activeRound']} activeRound
- */
-function findTurnsPerRound (state, activeRound) {
-  const { players, rounds } = state
-  const turns = []
-
-  let id = activeRound
-  // This is just a safety net. I don't expect to hit ten iterations.
-  let i = 0
-  while (i < 10) {
-    if (id === null) {
-      break
-    }
-
-    const round = rounds[id]
-    if (!round) {
-      break
-    }
-
-    turns.unshift(round.turns)
-    id = round.previousRound
-    i++
-  }
-
-  return turns.slice(0, players.length)
 }
 
 /**
