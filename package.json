@@ -45,6 +45,7 @@
     "@commitlint/config-conventional": "17.6.1",
     "c8": "7.13.0",
     "chai": "4.3.7",
+    "chai-almost": "1.0.1",
     "chai-dom": "1.11.0",
     "esbuild": "0.17.18",
     "husky": "8.0.3",
