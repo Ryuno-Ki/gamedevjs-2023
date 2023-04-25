@@ -72,8 +72,8 @@ export const initialState = {
   worlds: [{
     id: defaultWorldId,
     cubeLength: 30,
-    facesPerColumn: 1,
-    facesPerRow: 1,
+    facesPerColumn: 4,
+    facesPerRow: 4,
     solution: ['2601', '1F32C', '1F31E', '1F327']
   }]
 }

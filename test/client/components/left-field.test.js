@@ -24,7 +24,14 @@ describe('buildLeftFields', () => {
 
   it('should have child components equal to number of players', () => {
     // Arrange
-    const world = Object.assign({}, initialState.worlds[0])
+    const world = Object.assign(
+      {},
+      initialState.worlds[0],
+      {
+        facesPerColumn: 1,
+        facesPerRow: 1
+      }
+    )
 
     // Act
     const leftFields = buildLeftFields(world)
