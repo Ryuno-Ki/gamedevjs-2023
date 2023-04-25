@@ -50,11 +50,7 @@ describe('buildRound', () => {
 
   it("should contain options to choose from on one's turn", () => {
     // Arrange
-    const state = Object.assign(
-      {},
-      initialState,
-      {}
-    )
+    const state = Object.assign({}, initialState)
 
     // Act
     const round = buildRound(state)
@@ -72,5 +68,51 @@ describe('buildRound', () => {
     // eslint-disable-next-line no-unused-expressions
     expect(text).to.be.empty
     expect(children).to.be.an('Array').and.have.length(5)
+  })
+
+  it('should not contain previously selected options', () => {
+    // Arrange
+    const solution = ['abcd', 'ijkl', 'efgh']
+    const state = Object.assign(
+      {},
+      initialState,
+      {
+        activeRound: 'sonic',
+        activeWorld: 'greenhill',
+        rounds: {
+          sonic: {
+            previousRound: 'tails',
+            round: 2,
+            turns: []
+          },
+          tails: {
+            previousRound: null,
+            round: 1,
+            turns: ['abcd', 'efgh', 'ijkl']
+          }
+        },
+        worlds: [{
+          id: 'greenhill',
+          cubeLength: 1,
+          facesPerColumn: 1,
+          facesPerRow: 1,
+          solution
+        }]
+      }
+    )
+
+    // Act
+    const round = buildRound(state)
+    // eslint-disable-next-line no-unused-vars
+    const [roundText, select] = round[4]
+    const options = select[4]
+    const values = options.map((option) => option[2].value)
+
+    // Assert
+    expect(options).to.be.an('Array').and.have.length(
+      // Default pick option + all solutions (sorted) - previous selection
+      1 + solution.length - 1
+    )
+    expect(values).to.deep.equal(['', 'efgh', 'ijkl'])
   })
 })
