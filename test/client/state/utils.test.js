@@ -1,7 +1,91 @@
 import { expect } from 'chai'
 
 import { initialState } from '../../../src/client/state/initial.js'
-import { getTransitionsForSceneFromState } from '../../../src/client/state/utils.js'
+import {
+  findTurnsPerRound,
+  getTransitionsForSceneFromState
+} from '../../../src/client/state/utils.js'
+
+describe('findTurnsPerRound', () => {
+  describe('when no round is active', () => {
+    it('should return an empty Array', () => {
+      // Arrange
+      const activeRound = null
+      const state = Object.assign({}, initialState, { activeRound })
+
+      // Act
+      const turns = findTurnsPerRound(state, activeRound)
+
+      // Assert
+      expect(turns).to.be.an('Array').and.have.length(0)
+    })
+  })
+
+  describe('when only one round is played', () => {
+    it("should return that round's turns", () => {
+      // Arrange
+      const activeRound = 'sonic'
+      const playedTurns = ['abcd']
+
+      const state = Object.assign(
+        {},
+        initialState,
+        {
+          activeRound,
+          rounds: {
+            [activeRound]: {
+              previousRound: null,
+              round: 1,
+              turns: playedTurns
+            }
+          }
+        }
+      )
+
+      // Act
+      const turns = findTurnsPerRound(state, activeRound)
+
+      // Assert
+      expect(turns).to.be.an('Array').and.have.length(1)
+      expect(turns).to.contain(playedTurns)
+    })
+  })
+
+  describe('when multiple rounds are played', () => {
+    it("should return each round's turns", () => {
+      // Arrange
+      const activeRound = 'sonic'
+      const playedTurns = ['abcd']
+
+      const state = Object.assign(
+        {},
+        initialState,
+        {
+          activeRound,
+          rounds: {
+            [activeRound]: {
+              previousRound: 'tails',
+              round: 2,
+              turns: playedTurns
+            },
+            tails: {
+              previousRound: null,
+              round: 1,
+              turns: playedTurns
+            }
+          }
+        }
+      )
+
+      // Act
+      const turns = findTurnsPerRound(state, activeRound)
+
+      // Assert
+      expect(turns).to.be.an('Array').and.have.length(2)
+      expect(turns).to.contain(playedTurns)
+    })
+  })
+})
 
 describe('getTransitionsForSceneFromState', () => {
   describe('when scene is unknown', () => {
