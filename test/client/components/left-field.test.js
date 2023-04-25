@@ -120,10 +120,13 @@ describe('computeLeftFieldPoints', () => {
     ] = computeLeftFieldPoints(world)
     /*
      * Faces are positioned like so:
-     * pf pe pd pc
-     * pb pa p9 p8
-     * p7 p6 p5 p4
-     * p3 p2 p1 p0
+     * pf
+     * pb pe
+     * p7 pa pd
+     * p3 p6 p9 pc
+     *    p2 p5 p8
+     *       p1 p4
+     *          p0
      */
 
     const [br0, tr0, tl0, bl0] = p0
