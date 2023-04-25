@@ -48,6 +48,7 @@ export function checkForGameover (state, payload) {
  * @param {State['activeRound']} activeRound
  */
 function findTurnsPerRound (state, activeRound) {
+  const { players, rounds } = state
   const turns = []
 
   let id = activeRound
@@ -58,7 +59,7 @@ function findTurnsPerRound (state, activeRound) {
       break
     }
 
-    const round = state.rounds[id]
+    const round = rounds[id]
     if (!round) {
       break
     }
@@ -68,7 +69,7 @@ function findTurnsPerRound (state, activeRound) {
     i++
   }
 
-  return turns
+  return turns.slice(0, players.length)
 }
 
 /**
@@ -90,6 +91,7 @@ function evaluateTurns (turns) {
     })
     const turnsOrderedByCount = Array.from(counts)
     turnsOrderedByCount.sort((a, b) => b[1] - a[1])
+
     return turnsOrderedByCount[0][0]
   })
 }
