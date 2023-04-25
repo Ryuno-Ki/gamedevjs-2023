@@ -106,7 +106,8 @@ function findPreviousSelections (state) {
     : []
   const playerIndex = currentTurns.length
 
-  const previousSelections = findTurnsPerRound(state, activeRound).map((turnsPerRound) => turnsPerRound[playerIndex])
+  const previousSelections = findTurnsPerRound(state)
+    .map((turnsPerRound) => turnsPerRound[playerIndex])
   return previousSelections
 }
 

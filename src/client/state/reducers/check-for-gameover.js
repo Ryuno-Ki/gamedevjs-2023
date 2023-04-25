@@ -36,7 +36,7 @@ export function checkForGameover (state, payload) {
     return Object.assign({}, state, { activeScene })
   }
 
-  const turnsPerRound = findTurnsPerRound(state, activeRound)
+  const turnsPerRound = findTurnsPerRound(state)
   const votesPerRound = evaluateTurns(turnsPerRound)
 
   if (world.solution.some((emoji, index) => votesPerRound[index] === emoji)) {

@@ -2,10 +2,9 @@
  * Traverses the rounds of state to find all turns in them.
  *
  * @param {State} state
- * @param {State['activeRound']} activeRound
  * @returns {Array<Array<string>>}
  */
-export function findTurnsPerRound(state: State, activeRound: State['activeRound']): Array<Array<string>>;
+export function findTurnsPerRound(state: State): Array<Array<string>>;
 /**
  * Extracts the transitions from given scene from state.
  *

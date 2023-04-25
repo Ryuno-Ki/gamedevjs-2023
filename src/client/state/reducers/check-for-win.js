@@ -36,7 +36,7 @@ export function checkForWin (state, payload) {
     return Object.assign({}, state, { activeScene })
   }
 
-  const turnsPerRound = findTurnsPerRound(state, activeRound)
+  const turnsPerRound = findTurnsPerRound(state)
   const votesPerRound = evaluateTurns(turnsPerRound)
 
   if (world.solution.every((emoji, index) => votesPerRound[index] === emoji)) {

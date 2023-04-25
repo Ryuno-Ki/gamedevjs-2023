@@ -9,14 +9,13 @@ const logger = getLogger('utils')
  * Traverses the rounds of state to find all turns in them.
  *
  * @param {State} state
- * @param {State['activeRound']} activeRound
  * @returns {Array<Array<string>>}
  */
-export function findTurnsPerRound (state, activeRound) {
+export function findTurnsPerRound (state) {
   const { players, rounds } = state
   const turns = []
 
-  let id = activeRound
+  let id = state.activeRound
   // This is just a safety net. I don't expect to hit ten iterations.
   let i = 0
   while (i < 10) {
