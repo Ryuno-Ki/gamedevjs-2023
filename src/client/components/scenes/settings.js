@@ -12,6 +12,13 @@ import { buildHeadline } from '../headline.js'
  */
 
 /**
+ * @typedef {object} EmojiOption
+ * @property {string} EmojiOption.id
+ * @property {'checkbox'} EmojiOption.type
+ * @property {'checked'} [EmojiOption.checked]
+ */
+
+/**
  * Renders the scene for settings.
  *
  * @param {HTMLElement} targetElement
@@ -42,7 +49,8 @@ export function settingsSceneComponent (targetElement, state) {
 function buildScene (state) {
   return /** @type {HTMLDivElement} */(el('div', [], {}, '', [
     buildHeadline('Settings'),
-    buildSettings(state),
+    buildThemeSwitcher(state),
+    buildEmojiSwitcher(state),
     buildAnchors(state, 'settings')
   ]))
 }
@@ -54,7 +62,7 @@ function buildScene (state) {
  * @param {State} state
  * @returns {Array<*>}
  */
-function buildSettings (state) {
+function buildThemeSwitcher (state) {
   const { theme } = state
   const themeId = 'settings-theme'
   const system = /** @type {ThemeOption} */({ value: 'system' })
@@ -83,5 +91,29 @@ function buildSettings (state) {
       ['option', [], dark, 'Dark'],
       ['option', [], light, 'Light']
     ]]
+  ]]
+}
+
+/**
+ * Build the DOM to allow switching off OpenMoji emojis.
+ *
+ * @private
+ * @param {State} state
+ * @returns {Array<*>}
+ */
+function buildEmojiSwitcher (state) {
+  const emojiId = 'settings-emoji'
+
+  const { useOpenMoji } = state
+  /** @type {EmojiOption} */
+  const attributes = { id: emojiId, type: 'checkbox' }
+  if (useOpenMoji) {
+    attributes.checked = 'checked'
+  }
+
+  return ['fieldset', [], {}, '', [
+    ['legend', [], {}, 'Emoji'],
+    ['label', [], { for: emojiId }, 'Use OpenMoji emojis?'],
+    ['input', [], attributes]
   ]]
 }

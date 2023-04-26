@@ -6,6 +6,12 @@
  * @property {'selected'} [ThemeOption.selected]
  */
 /**
+ * @typedef {object} EmojiOption
+ * @property {string} EmojiOption.id
+ * @property {'checkbox'} EmojiOption.type
+ * @property {'checked'} [EmojiOption.checked]
+ */
+/**
  * Renders the scene for settings.
  *
  * @param {HTMLElement} targetElement
@@ -18,4 +24,9 @@ export type Theme = import('../../state/initial').Theme;
 export type ThemeOption = {
     value: Theme;
     selected?: "selected" | undefined;
+};
+export type EmojiOption = {
+    id: string;
+    type: 'checkbox';
+    checked?: "checked" | undefined;
 };
