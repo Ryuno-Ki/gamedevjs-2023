@@ -1,10 +1,11 @@
-import { SWITCH_THEME, SWITCH_TO_SCENE } from '../../constants.js'
+import { SET_USE_OPEN_MOJI, SWITCH_THEME, SWITCH_TO_SCENE } from '../../constants.js'
 import { reducer } from './reducers/index.js'
 
 /** @typedef {import('./../components/scenes/index').Scene} Scene */
 /** @typedef {import('./actions/index').Action} Action */
 /** @typedef {import('./actions/switch-theme').Action} SwitchThemeAction */
 /** @typedef {import('./actions/switch-to-scene').Action} SwitchToSceneAction */
+/** @typedef {import('./actions/set-use-open-moji').Action} SetUseOpenMojiAction */
 /** @typedef {import('./initial').State} State */
 
 /**
@@ -40,6 +41,9 @@ export class Store {
    */
   _applySideEffects (action) {
     switch (action.type) {
+      case SET_USE_OPEN_MOJI:
+        updateUseOpenMoji(/** @type {SetUseOpenMojiAction} */(action).payload)
+        break
       case SWITCH_THEME:
         updateTheme(/** @type {SwitchThemeAction} */(action).payload)
         break
@@ -78,6 +82,22 @@ function updateTheme (payload) {
   document.body.classList.remove('theme-dark')
   document.body.classList.remove('theme-light')
   document.body.classList.add(`theme-${theme}`)
+}
+
+/**
+ * Sets or removes a class to show OpenMoji emojis.
+ *
+ * @private
+ * @param {SetUseOpenMojiAction['payload']} payload
+ */
+function updateUseOpenMoji (payload) {
+  const { useOpenMoji } = payload
+
+  if (useOpenMoji) {
+    document.body.classList.remove('no-openmoji')
+  } else {
+    document.body.classList.add('no-openmoji')
+  }
 }
 
 // Export as Singleton
