@@ -2,10 +2,66 @@ import { expect } from 'chai'
 
 import { initialState } from '../../../src/client/state/initial.js'
 import {
+  evaluateTurns,
   findTurnsPerRound,
   getTransitionsForSceneFromState,
   hasGameFinished
 } from '../../../src/client/state/utils.js'
+
+describe('evaluateTurns', () => {
+  describe('on the first round before any turns', () => {
+    it('should return an empty Array', () => {
+      // Arrange
+      const turns = [[]]
+
+      // Act
+      const votesPerRound = evaluateTurns(turns, 3)
+
+      // Assert
+      expect(votesPerRound).to.be.an('Array').and.have.length(0)
+    })
+  })
+
+  describe('on the first round before all turns', () => {
+    it('should return an empty Array', () => {
+      // Arrange
+      const turns = [['abcd']]
+
+      // Act
+      const votesPerRound = evaluateTurns(turns, 3)
+
+      // Assert
+      expect(votesPerRound).to.be.an('Array').and.have.length(0)
+    })
+  })
+
+  describe("on ties (no turn with more than half the players' vote)", () => {
+    it('should return an Array of empty string', () => {
+      // Arrange
+      const turns = [['abcd', 'efgh', 'ijkl']]
+
+      // Act
+      const votesPerRound = evaluateTurns(turns, 3)
+
+      // Assert
+      expect(votesPerRound).to.be.an('Array').and.have.length(0)
+    })
+  })
+
+  describe("on majority (more than half the players' vote)", () => {
+    it('should return an Array of that vote', () => {
+      // Arrange
+      const turns = [['abcd', 'efgh', 'abcd']]
+
+      // Act
+      const votesPerRound = evaluateTurns(turns, 3)
+
+      // Assert
+      expect(votesPerRound).to.be.an('Array').and.have.length(1)
+      expect(votesPerRound).to.contain('abcd')
+    })
+  })
+})
 
 describe('findTurnsPerRound', () => {
   describe('when no round is active', () => {

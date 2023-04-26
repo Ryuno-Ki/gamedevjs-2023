@@ -7,6 +7,46 @@ import { getLogger } from '../../logger.js'
 const logger = getLogger('utils')
 
 /**
+ * Evaluates each turn to determine the winning vote.
+ *
+ * @param {Array<Array<string>>} turns
+ * @param {number} numberOfPlayers
+ * @returns {Array<string>}
+ */
+export function evaluateTurns (turns, numberOfPlayers) {
+  return turns
+    .filter((turnsPerRound) => turnsPerRound.length > 0)
+    .filter((turnsPerRound) => turnsPerRound.length >= numberOfPlayers)
+    .map((turnsPerRound) => {
+      const counts = new Map()
+      turnsPerRound.forEach((turn) => {
+        if (counts.has(turn)) {
+          counts.set(turn, 1 + counts.get(turn))
+        } else {
+          counts.set(turn, 1)
+        }
+      })
+      const turnsOrderedByCount = Array.from(counts)
+      turnsOrderedByCount.sort((a, b) => b[1] - a[1])
+      return turnsOrderedByCount
+    })
+    .map((turnsOrderedByCountPerRound) => {
+      const result = turnsOrderedByCountPerRound.filter((turnsOrderedByCount) => {
+        return turnsOrderedByCount[1] > Math.floor(numberOfPlayers / 2)
+      })
+      return result
+    })
+    .map((turnsOrderedByCountPerRound) => {
+      if (turnsOrderedByCountPerRound.length > 0) {
+        return turnsOrderedByCountPerRound[0][0]
+      }
+
+      return ''
+    })
+    .filter((turnsOrderedByCountPerRound) => Boolean(turnsOrderedByCountPerRound))
+}
+
+/**
  * Traverses the rounds of state to find all turns in them.
  *
  * @param {State} state
