@@ -4,6 +4,7 @@ import { selectEmoji } from './state/actions/select-emoji.js'
 import { selectWorld } from './state/actions/select-world.js'
 import { setIsBot } from './state/actions/set-is-bot.js'
 import { setNickname } from './state/actions/set-nickname.js'
+import { setUseOpenMoji } from './state/actions/set-use-open-moji.js'
 import { switchTheme } from './state/actions/switch-theme.js'
 import { switchToScene } from './state/actions/switch-to-scene.js'
 import store from './state/store.js'
@@ -33,6 +34,9 @@ export async function onChange (event) {
   }
 
   switch (/** @type {HTMLElement} */(target).nodeName) {
+    case 'INPUT':
+      await handleOnCheckboxChange(/** @type {HTMLInputElement} */(target))
+      break
     case 'SELECT':
       await handleOnSelectChange(/** @type {HTMLSelectElement} */(target))
       break
@@ -158,6 +162,17 @@ async function handleLinkClick (link) {
 async function handleButtonClick (button) {
   const worldId = button.dataset.id || ''
   await store.dispatch(selectWorld(worldId))
+}
+
+/**
+ * Handle checkbox change to choose OpenMoji font.
+ *
+ * @private
+ * @param {HTMLInputElement} inputElement
+ */
+async function handleOnCheckboxChange (inputElement) {
+  const useOpenMoji = inputElement.checked
+  await store.dispatch(setUseOpenMoji(useOpenMoji))
 }
 
 /**
