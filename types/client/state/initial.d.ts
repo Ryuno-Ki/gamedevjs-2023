@@ -11,6 +11,7 @@ export namespace initialState {
     export const rounds: {};
     export { scenes };
     export const theme: string;
+    export const useOpenMoji: boolean;
     export const worlds: {
         id: string;
         cubeLength: number;
@@ -54,6 +55,7 @@ export type State = {
     players: Array<Player>;
     rounds: Rounds;
     scenes: Scenes;
+    useOpenMoji: boolean;
     theme: Theme;
     worlds: Array<World>;
 };

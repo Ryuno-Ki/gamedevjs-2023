@@ -43,6 +43,7 @@ import { scenes } from './fsm/scenes.js'
  * @property {Array<Player>} State.players
  * @property {Rounds} State.rounds
  * @property {Scenes} State.scenes
+ * @property {boolean} State.useOpenMoji
  * @property {Theme} State.theme
  * @property {Array<World>} State.worlds
  */
@@ -67,6 +68,7 @@ export const initialState = {
   rounds: {},
   scenes,
   theme: 'system',
+  useOpenMoji: true,
   worlds: [{
     id: nanoid(),
     cubeLength: 30,
