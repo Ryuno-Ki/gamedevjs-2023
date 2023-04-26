@@ -59,5 +59,5 @@ function buildSolution (state) {
     }).join(' ')
     : 'Invalid'
 
-  return ['div', [], {}, solution]
+  return ['div', ['emoji'], {}, solution]
 }

@@ -161,5 +161,5 @@ function findPreviousSelections (state) {
 function buildOption (option) {
   const emojis = openmojis.find((emoji) => emoji.hexcode === option)
   const display = emojis ? emojis.emoji : 'Invalid'
-  return ['option', [], { value: option }, display]
+  return ['option', ['emoji'], { value: option }, display]
 }

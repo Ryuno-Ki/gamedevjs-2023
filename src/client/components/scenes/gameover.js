@@ -63,7 +63,7 @@ function buildEvaluation (state) {
       const playerTurn = ['li', [], {}, '', [
         ['span', [], {}, player.name],
         ['span', [], {}, ' played '],
-        ['span', [], {}, emoji]
+        ['span', ['emoji'], {}, emoji]
       ]]
       return ['ol', [], {}, '', [playerTurn]]
     })
