@@ -5,5 +5,6 @@ export { newGameSceneComponent } from './new-game.js'
 export { settingsSceneComponent } from './settings.js'
 export { titleSceneComponent } from './title.js'
 export { winSceneComponent } from './win.js'
+export { worldSceneComponent } from './world.js'
 
-/** @typedef {'about' | 'level' | 'gameover' | 'new-game' | 'settings' | 'title' | 'win'} Scene */
+/** @typedef {'about' | 'level' | 'gameover' | 'new-game' | 'settings' | 'title' | 'win' | 'world'} Scene */

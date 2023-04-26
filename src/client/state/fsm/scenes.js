@@ -60,8 +60,8 @@ export const scenes = {
     },
     'new-game': {
       on: {
-        navigateToLevel: {
-          target: 'level'
+        navigateToWorld: {
+          target: 'world'
         },
         navigateToTitle: {
           target: 'title'
@@ -92,6 +92,13 @@ export const scenes = {
       on: {
         navigateToTitle: {
           target: 'title'
+        }
+      }
+    },
+    world: {
+      on: {
+        navigateToLevel: {
+          target: 'level'
         }
       }
     }

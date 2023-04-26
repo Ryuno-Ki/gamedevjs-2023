@@ -30,7 +30,7 @@ export namespace scenes {
         };
         'new-game': {
             on: {
-                navigateToLevel: {
+                navigateToWorld: {
                     target: string;
                 };
                 navigateToTitle: {
@@ -61,6 +61,13 @@ export namespace scenes {
         win: {
             on: {
                 navigateToTitle: {
+                    target: string;
+                };
+            };
+        };
+        world: {
+            on: {
+                navigateToLevel: {
                     target: string;
                 };
             };
