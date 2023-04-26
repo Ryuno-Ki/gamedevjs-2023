@@ -3,6 +3,7 @@ import { buildAnchors } from '../anchors.js'
 import { buildHeadline } from '../headline.js'
 
 /** @typedef {import('../../state/initial').State} State */
+/** @typedef {import('../../state/initial').World} World */
 
 /**
  * Renders the scene for win.
@@ -35,6 +36,22 @@ export function winSceneComponent (targetElement, state) {
 function buildScene (state) {
   return /** @type {HTMLDivElement} */(el('div', [], {}, '', [
     buildHeadline('You win'),
+    buildSolution(state),
     buildAnchors(state, 'win')
   ]))
+}
+
+/**
+ * Build the data structure for displaying the world solution.
+ *
+ * @private
+ * @param {State} state
+ * @returns {Array<*>}
+ */
+function buildSolution (state) {
+  const { activeWorld, worlds } = state
+  const world = /** @type {Array<World>} */(worlds).find((world) => world.id === activeWorld) || null
+  const solution = world !== null ? world.solution : []
+
+  return ['div', [], {}, solution.join(' ')]
 }
