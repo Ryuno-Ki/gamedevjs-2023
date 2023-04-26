@@ -2,6 +2,30 @@
 @import './client/components/scenes/new-game.css';
 @import './client/components/scenes/title.css';
 
+@font-face {
+  font-family: OpenMoji-Color;
+  src: url("OpenMoji-Color.woff2") format("woff2");
+  font-weight: 700;
+  font-display: swap;
+}
+
+/*
+ * Custom emoji font-family to standardize appearance across platforms
+ * https://www.client9.com/css-color-emoji-stack/
+ * https://nolanlawson.com/2022/04/08/the-struggle-of-using-native-emoji-on-the-web/
+ * See https://github.com/necolas/normalize.css/issues/665#issuecomment-1116174450
+ */
+@font-face {
+  font-family: "color-emoji";
+  src: local("Apple Color Emoji"),
+       local("Twemoji Mozilla"),
+       local("Segoe UI Emoji"),
+       local("Segoe UI Symbol"),
+       local("Noto Color Emoji"),
+       local("EmojiOne Color"),
+       local("Android Emoji");
+}
+
 html,
 body {
   margin: 0;
@@ -33,4 +57,13 @@ section {
 
 section:empty {
   display: none;
+}
+
+.emoji {
+  font-family: OpenMoji-Color;
+  font-weight: 400;
+}
+
+.no-openmoji .emoji {
+  font-family: color-emoji;
 }
