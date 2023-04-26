@@ -13,5 +13,13 @@ export function findTurnsPerRound(state: State): Array<Array<string>>;
  * @returns {Array<Scene>}
  */
 export function getTransitionsForSceneFromState(state: State, scene: Scene): Array<Scene>;
+/**
+ * Evaluates the state for a finished set of rounds and turns.
+ *
+ * @param {State} state
+ * @returns {boolean}
+ */
+export function hasGameFinished(state: State): boolean;
 export type Scene = import('../components/scenes/index').Scene;
 export type State = import('./initial').State;
+export type World = import('./initial').World;

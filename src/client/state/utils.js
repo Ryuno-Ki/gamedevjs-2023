@@ -2,6 +2,7 @@ import { getLogger } from '../../logger.js'
 
 /** @typedef {import('../components/scenes/index').Scene} Scene */
 /** @typedef {import('./initial').State} State */
+/** @typedef {import('./initial').World} World */
 
 const logger = getLogger('utils')
 
@@ -63,4 +64,39 @@ export function getTransitionsForSceneFromState (state, scene) {
     .map((event) => event.target)
 
   return transitions
+}
+
+/**
+ * Evaluates the state for a finished set of rounds and turns.
+ *
+ * @param {State} state
+ * @returns {boolean}
+ */
+export function hasGameFinished (state) {
+  const { activeRound, activeWorld, players, rounds, worlds } = state
+
+  if (!activeRound) {
+    return false
+  }
+
+  const world = /** @type {Array<World>} */(worlds).find((world) => world.id === activeWorld) || null
+
+  if (!world) {
+    return false
+  }
+
+  const round = rounds[activeRound]
+  if (!round) {
+    return false
+  }
+
+  if (round.round < world.solution.length) {
+    return false
+  }
+
+  if (round.turns.length < players.length) {
+    return false
+  }
+
+  return true
 }

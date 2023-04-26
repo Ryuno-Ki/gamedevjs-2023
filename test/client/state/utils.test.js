@@ -3,7 +3,8 @@ import { expect } from 'chai'
 import { initialState } from '../../../src/client/state/initial.js'
 import {
   findTurnsPerRound,
-  getTransitionsForSceneFromState
+  getTransitionsForSceneFromState,
+  hasGameFinished
 } from '../../../src/client/state/utils.js'
 
 describe('findTurnsPerRound', () => {
@@ -132,6 +133,169 @@ describe('getTransitionsForSceneFromState', () => {
         expect(transitions).to.contain('settings')
         expect(transitions).to.contain('new-game')
       })
+    })
+  })
+})
+
+describe('hasGameFinished', () => {
+  describe('when there is no world', () => {
+    it('should return false', () => {
+      // Arrange
+      const state = Object.assign({}, initialState, { activeWorld: 'invalid' })
+
+      // Act
+      const isGameFinished = hasGameFinished(state)
+
+      // Assert
+      // Standard is tripped up by Chai here
+      // eslint-disable-next-line no-unused-expressions
+      expect(isGameFinished).to.be.false
+    })
+  })
+
+  describe('when there is no active round', () => {
+    it('should return false', () => {
+      // Arrange
+      const state = Object.assign({}, initialState, { activeRound: null })
+
+      // Act
+      const isGameFinished = hasGameFinished(state)
+
+      // Assert
+      // Standard is tripped up by Chai here
+      // eslint-disable-next-line no-unused-expressions
+      expect(isGameFinished).to.be.false
+    })
+  })
+
+  describe('when there is no world', () => {
+    it('should return false', () => {
+      // Arrange
+      const state = Object.assign({}, initialState, { activeWorld: 'invalid' })
+
+      // Act
+      const isGameFinished = hasGameFinished(state)
+
+      // Assert
+      // Standard is tripped up by Chai here
+      // eslint-disable-next-line no-unused-expressions
+      expect(isGameFinished).to.be.false
+    })
+  })
+
+  describe('when there are not enough rounds', () => {
+    it('should return false', () => {
+      // Arrange
+      const state = Object.assign(
+        {},
+        initialState,
+        {
+          activeRound: 'sonic',
+          rounds: {
+            sonic: {
+              previousRound: null,
+              round: 1,
+              turns: []
+            }
+          }
+        }
+      )
+
+      // Act
+      const isGameFinished = hasGameFinished(state)
+
+      // Assert
+      // Standard is tripped up by Chai here
+      // eslint-disable-next-line no-unused-expressions
+      expect(isGameFinished).to.be.false
+    })
+  })
+
+  describe('when there are not enough turns in the last round', () => {
+    it('should return false', () => {
+      // Arrange
+      const state = Object.assign(
+        {},
+        initialState,
+        {
+          activeRound: 'sonic',
+          players: [{
+            name: 'Mega',
+            isBot: false
+          }, {
+            name: 'Man',
+            isBot: true
+          }],
+          rounds: {
+            tails: {
+              previousRound: null,
+              round: 1,
+              turns: ['abcd', 'efgh']
+            },
+            sonic: {
+              previousRound: 'tails',
+              round: 2,
+              turns: []
+            }
+          }
+        }
+      )
+
+      // Act
+      const isGameFinished = hasGameFinished(state)
+
+      // Assert
+      // Standard is tripped up by Chai here
+      // eslint-disable-next-line no-unused-expressions
+      expect(isGameFinished).to.be.false
+    })
+  })
+
+  describe('when the last turn was made in the last round', () => {
+    it('should return true', () => {
+      // Arrange
+      const state = Object.assign(
+        {},
+        initialState,
+        {
+          activeRound: 'sonic',
+          activeWorld: 'greenhill',
+          players: [{
+            name: 'Mega',
+            isBot: false
+          }, {
+            name: 'Man',
+            isBot: true
+          }],
+          rounds: {
+            tails: {
+              previousRound: null,
+              round: 1,
+              turns: ['abcd', 'efgh']
+            },
+            sonic: {
+              previousRound: 'tails',
+              round: 2,
+              turns: ['abcd', 'efgh']
+            }
+          },
+          worlds: [{
+            id: 'greenhill',
+            cubeLength: 1,
+            facesPerColumn: 1,
+            facesPerRow: 1,
+            solution: ['abcd', 'efgh']
+          }]
+        }
+      )
+
+      // Act
+      const isGameFinished = hasGameFinished(state)
+
+      // Assert
+      // Standard is tripped up by Chai here
+      // eslint-disable-next-line no-unused-expressions
+      expect(isGameFinished).to.be.true
     })
   })
 })
