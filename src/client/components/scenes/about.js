@@ -67,7 +67,9 @@ function buildLicense () {
 function buildForge () {
   return ['p', [], {}, '', [
     ['span', [], {}, 'This game was developed entirely by me, '],
-    ['a', [], { href: 'https://jaenis.ch/' }, 'André Jaenisch']
+    ['a', [], { href: 'https://jaenis.ch/' }, 'André Jaenisch'],
+    ['span', [], {}, '. Find the source code on Codeberg: '],
+    ['a', [], { href: 'https://codeberg.org/Ryuno-Ki/gamedevjs-2023' }, 'gamedevjs-2023']
   ]]
 }
 
