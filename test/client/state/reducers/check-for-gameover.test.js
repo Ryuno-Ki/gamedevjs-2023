@@ -96,17 +96,17 @@ describe('checkForGameover', () => {
               amy: {
                 previousRound: null,
                 round: 1,
-                turns: []
+                turns: ['1234', '2345', '3456']
               },
               knuckles: {
                 previousRound: 'amy',
                 round: 2,
-                turns: []
+                turns: ['1234', '2345', '3456']
               },
               tails: {
                 previousRound: 'knuckles',
                 round: 3,
-                turns: []
+                turns: ['1234', '2345', '3456']
               },
               sonic: {
                 previousRound: 'tails',
@@ -119,7 +119,7 @@ describe('checkForGameover', () => {
               cubeLength: 1,
               facesPerColumn: 1,
               facesPerRow: 1,
-              solution: ['1234', '5678']
+              solution: ['1234', '5678', '2345', '3456']
             }]
           }
         )
