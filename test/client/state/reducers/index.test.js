@@ -7,6 +7,7 @@ import {
   SELECT_WORLD,
   SET_IS_BOT,
   SET_NICKNAME,
+  SET_USE_OPEN_MOJI,
   SWITCH_THEME,
   SWITCH_TO_SCENE,
   TICK
@@ -118,6 +119,20 @@ describe('reducer', () => {
       // Arrange
       const state = Object.assign({}, initialState)
       const action = { type: SET_NICKNAME, payload: { index: 2, nickname: 'Mega' } }
+
+      // Act
+      const newState = reducer(state, action)
+
+      // Assert
+      expect(newState).to.not.equal(state)
+    })
+  })
+
+  describe('when invoked with SET_USE_OPEN_MOJI action', () => {
+    it('should update the state', () => {
+      // Arrange
+      const state = Object.assign({}, initialState)
+      const action = { type: SET_USE_OPEN_MOJI, payload: { useOpenMoji: false } }
 
       // Act
       const newState = reducer(state, action)

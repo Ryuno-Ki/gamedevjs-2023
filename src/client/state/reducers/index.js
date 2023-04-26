@@ -5,6 +5,7 @@ import {
   SELECT_WORLD,
   SET_IS_BOT,
   SET_NICKNAME,
+  SET_USE_OPEN_MOJI,
   SWITCH_THEME,
   SWITCH_TO_SCENE,
   TICK
@@ -17,6 +18,7 @@ import { selectEmoji } from './select-emoji.js'
 import { selectWorld } from './select-world.js'
 import { setIsBot } from './set-is-bot.js'
 import { setNickname } from './set-nickname.js'
+import { setUseOpenMoji } from './set-use-open-moji.js'
 import { switchTheme } from './switch-theme.js'
 import { switchToScene } from './switch-to-scene.js'
 import { tick } from './tick.js'
@@ -68,6 +70,11 @@ export function reducer (state, action) {
       return setNickname(
         state,
         /** @type {import('../actions/set-nickname').Action} */(action).payload
+      )
+    case SET_USE_OPEN_MOJI:
+      return setUseOpenMoji(
+        state,
+        /** @type {import('../actions/set-use-open-moji').Action} */(action).payload
       )
     case SWITCH_THEME:
       return switchTheme(
