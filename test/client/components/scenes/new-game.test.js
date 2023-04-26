@@ -41,9 +41,11 @@ describe('newGameSceneComponent', () => {
       // Assert
       expect(component).to.have.descendants('fieldset').and.have.length(state.players.length)
       expect(component).to.have.descendants('legend').and.have.length(state.players.length)
-      expect(component).to.have.descendants('label').and.have.length(state.players.length * 3)
+      expect(component).to.have.descendants('label').and.have.length(state.players.length)
+      // The Yes/No label is excluded from the submission
+      // expect(component).to.have.descendants('label').and.have.length(state.players.length * 3)
       expect(component).to.have.descendants('input[type="text"]').and.have.length(state.players.length)
-      expect(component).to.have.descendants('input[type="radio"]').and.have.length(state.players.length * 2)
+      // expect(component).to.have.descendants('input[type="radio"]').and.have.length(state.players.length * 2)
     })
 
     it('should render links to transition to other scenes', () => {

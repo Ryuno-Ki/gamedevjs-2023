@@ -61,7 +61,9 @@ function mapPlayersToFieldsets (players) {
  * @returns {*}
  */
 function mapPlayerToFieldset (player, index) {
+  /*
   const idBot = `player-${index + 1}-bot`
+  */
   const idName = `player-${index + 1}-name`
 
   return ['fieldset', [], {}, '', [
@@ -69,7 +71,8 @@ function mapPlayerToFieldset (player, index) {
     ['div', [], {}, '', [
       ['label', [], { for: idName }, 'Nickname'],
       ['input', [], { id: idName, 'data-index': index, type: 'text' }]
-    ]],
+    ]]
+    /* Don't forget the comma in the line above!
     ['div', [], {}, '', [
       ['p', [], {}, 'Is Bot?'],
       ['label', [], { for: `${idBot}-yes` }, 'Yes'],
@@ -91,5 +94,6 @@ function mapPlayerToFieldset (player, index) {
         value: false
       }]
     ]]
+    */
   ]]
 }
