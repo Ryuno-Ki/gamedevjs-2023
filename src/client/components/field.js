@@ -16,7 +16,7 @@ import { buildTopFields } from './top-field.js'
 export function buildField (state) {
   const attributes = {
     height: '300',
-    id: state.activeWorld,
+    id: state.activeWorld || 'INVALID',
     viewBox: '0 0 100 100',
     width: '300',
     xmlns: 'http://www.w3.org/2000/svg'

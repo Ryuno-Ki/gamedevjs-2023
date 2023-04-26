@@ -33,11 +33,13 @@ describe('levelSceneComponent', () => {
 
     it('should render the nicknames and an avatar for the players', () => {
       // Arrange
+      const [world] = initialState.worlds
       const state = Object.assign(
         {},
         initialState,
         {
           activeScene: 'level',
+          activeWorld: world.id,
           players: [
             ...initialState.players,
             { name: 'Mega', isBot: true }

@@ -30,7 +30,8 @@ describe('buildField', () => {
 
   it('should have players', () => {
     // Arrange
-    const state = Object.assign({}, initialState)
+    const [world] = initialState.worlds
+    const state = Object.assign({}, initialState, { activeWorld: world.id })
 
     // Act
     const field = buildField(state)
@@ -41,7 +42,8 @@ describe('buildField', () => {
 
   it('should have three fields composed of faces', () => {
     // Arrange
-    const state = Object.assign({}, initialState)
+    const [world] = initialState.worlds
+    const state = Object.assign({}, initialState, { activeWorld: world.id })
 
     // Act
     const field = buildField(state)

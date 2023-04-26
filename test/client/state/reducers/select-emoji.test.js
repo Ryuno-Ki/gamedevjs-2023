@@ -6,11 +6,13 @@ import { selectEmoji } from '../../../../src/client/state/reducers/select-emoji.
 describe('selectEmoji', () => {
   it('should update the round with a new turn', () => {
     // Arrange
+    const [world] = initialState.worlds
     const state = Object.assign(
       {},
       initialState,
       {
         activeRound: 'greenhill',
+        activeWorld: world.id,
         rounds: {
           greenhill: {
             previousRound: null,
@@ -39,11 +41,13 @@ describe('selectEmoji', () => {
   describe('when every player made their turn', () => {
     it('should create a new round', () => {
       // Arrange
+      const [world] = initialState.worlds
       const state = Object.assign(
         {},
         initialState,
         {
           activeRound: 'greenhill',
+          activeWorld: world.id,
           rounds: {
             greenhill: {
               previousRound: null,

@@ -37,7 +37,7 @@ import { scenes } from './fsm/scenes.js'
  * @typedef {object} State
  * @property {string | null} State.activeRound
  * @property {Scene} State.activeScene
- * @property {string} State.activeWorld
+ * @property {string | null} State.activeWorld
  * @property {Array<number>} State.clock
  * @property {GameStatus} State.gameStatus
  * @property {Array<Player>} State.players
@@ -47,13 +47,11 @@ import { scenes } from './fsm/scenes.js'
  * @property {Array<World>} State.worlds
  */
 
-const defaultWorldId = nanoid()
-
 /* @type {State} */
 export const initialState = {
   activeRound: null,
   activeScene: 'title',
-  activeWorld: defaultWorldId,
+  activeWorld: null,
   clock: [],
   gameStatus: 'UNINITIALISED',
   players: [{
@@ -70,7 +68,25 @@ export const initialState = {
   scenes,
   theme: 'system',
   worlds: [{
-    id: defaultWorldId,
+    id: nanoid(),
+    cubeLength: 30,
+    facesPerColumn: 1,
+    facesPerRow: 1,
+    solution: ['1F31E']
+  }, {
+    id: nanoid(),
+    cubeLength: 30,
+    facesPerColumn: 2,
+    facesPerRow: 2,
+    solution: ['1F32C', '1F31E']
+  }, {
+    id: nanoid(),
+    cubeLength: 30,
+    facesPerColumn: 3,
+    facesPerRow: 3,
+    solution: ['1F32C', '2601', '1F31E']
+  }, {
+    id: nanoid(),
     cubeLength: 30,
     facesPerColumn: 4,
     facesPerRow: 4,

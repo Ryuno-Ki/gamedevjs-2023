@@ -94,7 +94,8 @@ describe('buildRound', () => {
 
   it("should contain options to choose from on one's turn", () => {
     // Arrange
-    const state = Object.assign({}, initialState)
+    const [world] = initialState.worlds
+    const state = Object.assign({}, initialState, { activeWorld: world.id })
 
     // Act
     const round = buildRound(state)
@@ -110,7 +111,7 @@ describe('buildRound', () => {
     // Standard is tripped up by Chai here
     // eslint-disable-next-line no-unused-expressions
     expect(text).to.be.empty
-    expect(children).to.be.an('Array').and.have.length(5)
+    expect(children).to.be.an('Array').and.have.length(1 + world.solution.length)
   })
 
   it('should not contain previously selected options', () => {

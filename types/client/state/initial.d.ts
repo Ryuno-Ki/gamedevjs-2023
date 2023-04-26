@@ -1,7 +1,7 @@
 export namespace initialState {
     export const activeRound: null;
     export const activeScene: string;
-    export { defaultWorldId as activeWorld };
+    export const activeWorld: null;
     export const clock: never[];
     export const gameStatus: string;
     export const players: {
@@ -48,7 +48,7 @@ export type World = {
 export type State = {
     activeRound: string | null;
     activeScene: Scene;
-    activeWorld: string;
+    activeWorld: string | null;
     clock: Array<number>;
     gameStatus: GameStatus;
     players: Array<Player>;
@@ -57,45 +57,4 @@ export type State = {
     theme: Theme;
     worlds: Array<World>;
 };
-/** @typedef {import('../components/scenes/index').Scene} Scene} */
-/** @typedef {import('./fsm/scenes').Scenes} Scenes */
-/** @typedef {'UNINITIALISED' | 'INITIALISED' | 'RUNNING'} GameStatus */
-/** @typedef {'system' | 'dark' | 'light'} Theme */
-/**
- * @typedef {object} Player
- * @property {boolean} Player.isBot
- * @property {string} Player.name
- */
-/**
- * @typedef {object} Round
- * @property {string | null} Round.previousRound
- * @property {number} Round.round
- * @property {Array<string>} Round.turns
- */
-/**
- * @typedef {Object<string, Round>} Rounds
- */
-/**
- * @typedef {object} World
- * @property {string} World.id
- * @property {number} World.cubeLength
- * @property {number} World.facesPerColumn
- * @property {number} World.facesPerRow
- * @property {Array<string>} World.solution
- */
-/**
- * @typedef {object} State
- * @property {string | null} State.activeRound
- * @property {Scene} State.activeScene
- * @property {string} State.activeWorld
- * @property {Array<number>} State.clock
- * @property {GameStatus} State.gameStatus
- * @property {Array<Player>} State.players
- * @property {Rounds} State.rounds
- * @property {Scenes} State.scenes
- * @property {Theme} State.theme
- * @property {Array<World>} State.worlds
- */
-declare const defaultWorldId: string;
 import { scenes } from './fsm/scenes.js';
-export {};
