@@ -36,6 +36,7 @@ function buildScene (state) {
   return /** @type {HTMLDivElement} */(el('div', [], {}, '', [
     buildHeadline('About'),
     buildLicense(),
+    buildForge(),
     buildOpenmoji(),
     buildAnchors(state, 'about')
   ]))
@@ -48,7 +49,26 @@ function buildScene (state) {
  * @returns {Array<*>}
  */
 function buildLicense () {
-  return ['p', [], {}, 'This game is licensed under AGPL v3 or later.']
+  return ['p', [], {}, '', [
+    ['span', [], {}, 'This game is licensed under AGPL v3 or later. '],
+    ['span', [], {}, 'See ', [
+      ['a', [], { href: './LICENSE.txt' }, 'LICENSE']
+    ]],
+    ['span', [], {}, ' for details.']
+  ]]
+}
+
+/**
+ * Build the DOM to display a link to the source code.
+ *
+ * @private
+ * @returns {Array<*>}
+ */
+function buildForge () {
+  return ['p', [], {}, '', [
+    ['span', [], {}, 'This game was developed entirely by me, '],
+    ['a', [], { href: 'https://jaenis.ch/' }, 'André Jaenisch']
+  ]]
 }
 
 /**
