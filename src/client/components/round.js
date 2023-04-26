@@ -12,6 +12,7 @@ import { findTurnsPerRound } from '../state/utils.js'
 export function buildRound (state) {
   return ['div', [], {}, '', [
     buildRoundText(state),
+    buildVotedTurn(state),
     buildSelect(state)
   ]]
 }
@@ -41,6 +42,45 @@ function buildRoundText (state) {
     ['span', [], {}, ' / '],
     ['span', [], {}, playerText]
   ]]
+}
+
+/**
+ * Build the evaluated turn of the previous round.
+ *
+ * @private
+ * @param {State} state
+ * @returns {Array<*>}
+ */
+function buildVotedTurn (state) {
+  let votedTurn = /** @type {Array<Array<string>>} */([])
+    .concat(findTurnsPerRound(state))
+
+  // Ignore the active round
+  votedTurn = votedTurn.map((turnsPerRound) => {
+    const counts = new Map()
+    turnsPerRound.forEach((turn) => {
+      if (counts.has(turn)) {
+        counts.set(turn, 1 + counts.get(turn))
+      } else {
+        counts.set(turn, 1)
+      }
+    })
+    const turnsOrderedByCount = Array
+      .from(counts)
+      .filter((turn) => turn[1] > 1)
+    turnsOrderedByCount.sort((a, b) => b[1] - a[1])
+    return turnsOrderedByCount.map((turn) => turn[0])
+  })
+
+  return ['span', [], {}, '',
+    votedTurn
+      .map((child) => child.length > 0 ? child[0] : '1F937')
+      .map((child) => {
+        const emojis = openmojis.find((emoji) => emoji.hexcode === child)
+        return emojis ? emojis.emoji : 'Invalid'
+      })
+      .map((child) => ['span', [], {}, child])
+  ]
 }
 
 /**

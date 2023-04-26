@@ -45,7 +45,51 @@ describe('buildRound', () => {
     // Standard is tripped up by Chai here
     // eslint-disable-next-line no-unused-expressions
     expect(text).to.be.empty
-    expect(children).to.be.an('Array').and.have.length(2)
+    expect(children).to.be.an('Array').and.have.length(3)
+  })
+
+  it('should display the previous votes', () => {
+    // Arrange
+    const state = Object.assign(
+      {},
+      initialState,
+      {
+        activeRound: 'sonic',
+        rounds: {
+          knuckles: {
+            previousRound: null,
+            round: 1,
+            turns: ['efgh', 'abcd', 'efgh']
+          },
+          tails: {
+            previousRound: 'knuckles',
+            round: 2,
+            turns: ['abcd', 'efgh', 'abcd']
+          },
+          sonic: {
+            previousRound: 'tails',
+            round: 3,
+            turns: ['ihjk']
+          }
+        }
+      }
+    )
+
+    // Act
+    const round = buildRound(state)
+    const votes = round[4][1]
+    const [wrapper, classList, attributes, text, children] = votes
+
+    // Assert
+    expect(wrapper).to.equal('span')
+    // Standard is tripped up by Chai here
+    // eslint-disable-next-line no-unused-expressions
+    expect(classList).to.be.empty
+    expect(attributes).to.not.have.any.keys('')
+    // Standard is tripped up by Chai here
+    // eslint-disable-next-line no-unused-expressions
+    expect(text).to.be.empty
+    expect(children).to.be.an('Array').and.have.length(3)
   })
 
   it("should contain options to choose from on one's turn", () => {
@@ -54,8 +98,7 @@ describe('buildRound', () => {
 
     // Act
     const round = buildRound(state)
-    // eslint-disable-next-line no-unused-vars
-    const [roundText, select] = round[4]
+    const select = round[4][2]
     const [name, classList, attributes, text, children] = select
 
     // Assert
@@ -103,8 +146,7 @@ describe('buildRound', () => {
 
     // Act
     const round = buildRound(state)
-    // eslint-disable-next-line no-unused-vars
-    const [roundText, select] = round[4]
+    const select = round[4][2]
     const options = select[4]
     const values = options.map((option) => option[2].value)
 
