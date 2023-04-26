@@ -1,4 +1,4 @@
-import { findTurnsPerRound } from '../utils.js'
+import { findTurnsPerRound, hasGameFinished } from '../utils.js'
 
 /** @typedef {import('../actions/check-for-gameover').Action} Action */
 /** @typedef {import('../initial').State} State */
@@ -13,33 +13,20 @@ import { findTurnsPerRound } from '../utils.js'
  */
 export function checkForGameover (state, payload) {
   let activeScene = state.activeScene
-  const { activeRound, activeWorld, players, rounds, worlds } = state
-  if (!activeRound) {
+  const { activeWorld, worlds } = state
+  if (!hasGameFinished(state)) {
     return Object.assign({}, state, { activeScene })
   }
 
   const world = /** @type {Array<World>} */(worlds).find((world) => world.id === activeWorld) || null
-  if (!world) {
-    return Object.assign({}, state, { activeScene })
-  }
-
-  const round = rounds[activeRound]
-  if (!round) {
-    return Object.assign({}, state, { activeScene })
-  }
-
-  if (round.round < world.solution.length) {
-    return Object.assign({}, state, { activeScene })
-  }
-
-  if (round.turns.length < players.length) {
-    return Object.assign({}, state, { activeScene })
-  }
 
   const turnsPerRound = findTurnsPerRound(state)
   const votesPerRound = evaluateTurns(turnsPerRound)
 
-  if (world.solution.some((emoji, index) => votesPerRound[index] === emoji)) {
+  if (
+    /** @type {World!} */(world).solution
+      .some((emoji, index) => votesPerRound[index] === emoji)
+  ) {
     activeScene = 'gameover'
   }
 
