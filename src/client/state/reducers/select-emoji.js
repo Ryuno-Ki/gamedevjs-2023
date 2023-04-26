@@ -18,7 +18,7 @@ export function selectEmoji (state, payload) {
   let newId = activeRound
   let rounds = state.rounds
 
-  if (world && activeRound) {
+  if (world && activeRound && payload.emoji) {
     rounds = {
       ...state.rounds,
       [activeRound]: {
