@@ -12,6 +12,8 @@ export const SELECT_WORLD = 'SELECT_WORLD'
 export const SET_IS_BOT = 'SET_IS_BOT'
 /** Action type to update the nickname of a player. */
 export const SET_NICKNAME = 'SET_NICKNAME'
+/** Action type to toggle the display using OpenMoji emojis. */
+export const SET_USE_OPEN_MOJI = 'SET_USE_OPEN_MOJI'
 /** Action type to switch to another theme. */
 export const SWITCH_THEME = 'SWITCH_THEME'
 /** Action type to switch to another scene. */
