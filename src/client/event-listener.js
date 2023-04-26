@@ -1,6 +1,7 @@
 import { checkForGameover } from './state/actions/check-for-gameover.js'
 import { checkForWin } from './state/actions/check-for-win.js'
 import { selectEmoji } from './state/actions/select-emoji.js'
+import { selectWorld } from './state/actions/select-world.js'
 import { setIsBot } from './state/actions/set-is-bot.js'
 import { setNickname } from './state/actions/set-nickname.js'
 import { switchTheme } from './state/actions/switch-theme.js'
@@ -60,6 +61,9 @@ export async function onClick (event) {
         await handleLinkClick(href)
       }
       break
+    case 'BUTTON':
+      await handleButtonClick(/** @type {HTMLButtonElement} */(target))
+      break
     default:
       // Do nothing
   }
@@ -115,7 +119,7 @@ async function handleFormInput (inputElement) {
  * @param {HTMLInputElement} radioInputElement
  */
 async function handleIsBot (radioInputElement) {
-  const index = parseInt(radioInputElement.dataset.index || '-1', 10) || -1
+  const index = parseInt(radioInputElement.dataset.index || '-1', 10)
   const isBot = radioInputElement.value === 'true'
   await store.dispatch(setIsBot(index, isBot))
 }
@@ -135,7 +139,7 @@ async function handleNickname (textInputElement) {
 }
 
 /**
- * Handle link clicks by transition to a new scene
+ * Handle link clicks by transition to a new scene.
  *
  * @private
  * @param {string} link
@@ -143,6 +147,17 @@ async function handleNickname (textInputElement) {
 async function handleLinkClick (link) {
   const scene = /** @type {Scene} */(link.slice(1))
   await store.dispatch(switchToScene(scene))
+}
+
+/**
+ * Handle button clicks to select a world.
+ *
+ * @private
+ * @param {HTMLButtonElement} button
+ */
+async function handleButtonClick (button) {
+  const worldId = button.dataset.id || ''
+  await store.dispatch(selectWorld(worldId))
 }
 
 /**
