@@ -118,10 +118,14 @@ export function getTransitionsForSceneFromState (state, scene) {
  * @returns {boolean}
  */
 export function hasGameFinished (state) {
-  const { activeRound, activeWorld, players, rounds, worlds } = state
+  const { activeRound, activeScene, activeWorld, players, rounds, worlds } = state
 
   if (!activeRound) {
     return false
+  }
+
+  if (['gameover', 'win'].includes(activeScene)) {
+    return true
   }
 
   const world = /** @type {Array<World>} */(worlds).find((world) => world.id === activeWorld) || null

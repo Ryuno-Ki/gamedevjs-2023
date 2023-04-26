@@ -30,5 +30,9 @@ export function checkForWin (state, payload) {
     activeScene = 'win'
   }
 
+  if (state.activeScene === 'gameover') {
+    activeScene = 'gameover'
+  }
+
   return Object.assign({}, state, { activeScene })
 }

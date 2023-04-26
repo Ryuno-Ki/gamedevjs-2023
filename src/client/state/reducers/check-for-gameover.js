@@ -17,6 +17,10 @@ export function checkForGameover (state, payload) {
     return Object.assign({}, state)
   }
 
+  if (state.activeScene === 'win') {
+    return Object.assign({}, state)
+  }
+
   const world = /** @type {Array<World>} */(worlds).find((world) => world.id === activeWorld) || null
 
   const turnsPerRound = findTurnsPerRound(state)
