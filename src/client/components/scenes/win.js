@@ -1,3 +1,4 @@
+import { openmojis } from '../../../vendor/openmoji.js'
 import { el } from '../el.js'
 import { buildAnchors } from '../anchors.js'
 import { buildHeadline } from '../headline.js'
@@ -51,7 +52,12 @@ function buildScene (state) {
 function buildSolution (state) {
   const { activeWorld, worlds } = state
   const world = /** @type {Array<World>} */(worlds).find((world) => world.id === activeWorld) || null
-  const solution = world !== null ? world.solution : []
+  const solution = world !== null
+    ? world.solution.map((item) => {
+      const emojis = openmojis.find((emoji) => emoji.hexcode === item)
+      return emojis ? emojis.emoji : 'Invalid'
+    }).join(' ')
+    : 'Invalid'
 
-  return ['div', [], {}, solution.join(' ')]
+  return ['div', [], {}, solution]
 }
