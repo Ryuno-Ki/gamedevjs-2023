@@ -10,7 +10,13 @@
  * @returns {State}
  */
 export function selectWorld (state, payload) {
-  const activeWorld = payload.worldId ? payload.worldId : state.activeWorld
+  let activeScene = state.activeScene
+  let activeWorld = state.activeWorld
 
-  return Object.assign({}, state, { activeWorld })
+  if (payload.worldId) {
+    activeScene = 'level'
+    activeWorld = payload.worldId
+  }
+
+  return Object.assign({}, state, { activeScene, activeWorld })
 }

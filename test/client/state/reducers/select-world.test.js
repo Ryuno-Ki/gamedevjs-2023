@@ -14,6 +14,7 @@ describe('selectWorld', () => {
 
     // Assert
     expect(newState).not.to.equal(state)
+    expect(newState.activeScene).to.equal('level')
     expect(newState.activeWorld).to.equal(payload.worldId)
   })
 })
