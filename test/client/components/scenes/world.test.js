@@ -39,7 +39,7 @@ describe('worldSceneComponent', () => {
       const component = worldSceneComponent(document.body, state)
 
       // Assert
-      expect(component).to.contain('a')
+      expect(component).to.contain('button')
     })
   })
 
