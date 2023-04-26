@@ -53,7 +53,7 @@ export function evaluateTurns (turns, numberOfPlayers) {
  * @returns {Array<Array<string>>}
  */
 export function findTurnsPerRound (state) {
-  const { players, rounds } = state
+  const { activeWorld, rounds, worlds } = state
   const turns = []
 
   let id = state.activeRound
@@ -74,7 +74,12 @@ export function findTurnsPerRound (state) {
     i++
   }
 
-  return turns.slice(0, players.length)
+  const world = /** @type {Array<World>} */(worlds).find((world) => world.id === activeWorld) || null
+  if (world) {
+    return turns.slice(0, world.solution.length)
+  }
+
+  return turns
 }
 
 /**
@@ -132,6 +137,10 @@ export function hasGameFinished (state) {
 
   if (round.round < world.solution.length) {
     return false
+  }
+
+  if (round.round > world.solution.length) {
+    return true
   }
 
   if (round.turns.length < players.length) {
