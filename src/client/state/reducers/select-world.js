@@ -1,3 +1,5 @@
+import { nanoid } from 'nanoid'
+
 /** @typedef {import('../initial').State} State */
 /** @typedef {import('../initial').World} World */
 /** @typedef {import('../actions/select-world').Action} Action */
@@ -10,13 +12,20 @@
  * @returns {State}
  */
 export function selectWorld (state, payload) {
-  let activeScene = state.activeScene
-  let activeWorld = state.activeWorld
+  let { activeRound, activeScene, activeWorld, rounds } = state
 
   if (payload.worldId) {
+    activeRound = nanoid()
     activeScene = 'level'
     activeWorld = payload.worldId
+    rounds = {
+      [activeRound]: {
+        previousRound: null,
+        round: 1,
+        turns: []
+      }
+    }
   }
 
-  return Object.assign({}, state, { activeScene, activeWorld })
+  return Object.assign({}, state, { activeRound, activeScene, activeWorld, rounds })
 }
