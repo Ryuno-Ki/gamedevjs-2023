@@ -6,6 +6,8 @@ export const CHECK_FOR_GAMEOVER = 'CHECK_FOR_GAMEOVER'
 export const CHECK_FOR_WIN = 'CHECK_FOR_WIN'
 /** Action type for selecting an emoji. */
 export const SELECT_EMOJI = 'SELECT_EMOJI'
+/** Action type for selecting a world. */
+export const SELECT_WORLD = 'SELECT_WORLD'
 /** Action type to toggle the type of player. */
 export const SET_IS_BOT = 'SET_IS_BOT'
 /** Action type to update the nickname of a player. */
