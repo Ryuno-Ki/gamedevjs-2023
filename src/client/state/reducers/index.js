@@ -2,6 +2,7 @@ import {
   CHECK_FOR_GAMEOVER,
   CHECK_FOR_WIN,
   SELECT_EMOJI,
+  SELECT_WORLD,
   SET_IS_BOT,
   SET_NICKNAME,
   SWITCH_THEME,
@@ -13,6 +14,7 @@ import { initialState } from '../initial.js'
 import { checkForGameover } from './check-for-gameover.js'
 import { checkForWin } from './check-for-win.js'
 import { selectEmoji } from './select-emoji.js'
+import { selectWorld } from './select-world.js'
 import { setIsBot } from './set-is-bot.js'
 import { setNickname } from './set-nickname.js'
 import { switchTheme } from './switch-theme.js'
@@ -51,6 +53,11 @@ export function reducer (state, action) {
       return selectEmoji(
         state,
         /** @type {import('../actions/select-emoji').Action} */(action).payload
+      )
+    case SELECT_WORLD:
+      return selectWorld(
+        state,
+        /** @type {import('../actions/select-world').Action} */(action).payload
       )
     case SET_IS_BOT:
       return setIsBot(

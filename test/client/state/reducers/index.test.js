@@ -4,6 +4,7 @@ import {
   CHECK_FOR_GAMEOVER,
   CHECK_FOR_WIN,
   SELECT_EMOJI,
+  SELECT_WORLD,
   SET_IS_BOT,
   SET_NICKNAME,
   SWITCH_THEME,
@@ -75,6 +76,20 @@ describe('reducer', () => {
       // Arrange
       const state = Object.assign({}, initialState)
       const action = { type: SELECT_EMOJI, payload: { emoji: '1234' } }
+
+      // Act
+      const newState = reducer(state, action)
+
+      // Assert
+      expect(newState).to.not.equal(state)
+    })
+  })
+
+  describe('when invoked with SELECT_WORLD action', () => {
+    it('should update the state', () => {
+      // Arrange
+      const state = Object.assign({}, initialState)
+      const action = { type: SELECT_WORLD, payload: { worldId: '1234' } }
 
       // Act
       const newState = reducer(state, action)
